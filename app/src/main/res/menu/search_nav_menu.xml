@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/chooseTypeFragment"
+        android:title="@string/type_question"
+        android:orderInCategory="1"
+        android:icon="@drawable/ic_type_selected"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/chooseGroupFragment"
+        android:title="@string/group_question"
+        android:orderInCategory="2"
+        android:icon="@drawable/ic_group_selected"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/chooseMoneyFragment"
+        android:title="@string/money_question"
+        android:orderInCategory="3"
+        android:icon="@drawable/ic_money_selected"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/choosePlaceFragment"
+        android:title="@string/place_question"
+        android:orderInCategory="4"
+        app:showAsAction="always" />
+</menu>

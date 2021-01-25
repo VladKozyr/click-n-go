@@ -1,13 +1,13 @@
 plugins {
     id 'com.android.application'
+    id 'com.google.gms.google-services'
 }
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.clickandgo"
+        applicationId "com.example.clickandgo"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
@@ -33,18 +33,30 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.navigation:navigation-fragment:2.3.2'
+    implementation 'androidx.navigation:navigation-ui:2.3.2'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-    implementation 'com.google.dagger:dagger:2.28.3'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.28.3'
+    implementation 'com.google.dagger:dagger:2.28.1'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.28.1'
 
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
     // Because RxAndroid releases are few and far between, it is recommended you also
     // explicitly depend on RxJava's latest version for bug fixes and new features.
     // (see https://github.com/ReactiveX/RxJava/releases for latest 3.x.x version)
     implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
+
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+
+    def nav_version = "2.3.2"
+
+    // Java language implementation
+    implementation "androidx.navigation:navigation-fragment:$nav_version"
+    implementation "androidx.navigation:navigation-ui:$nav_version"
+
 
     // Import the BoM for the Firebase platform
     implementation platform('com.google.firebase:firebase-bom:26.2.0')
@@ -53,5 +65,4 @@ dependencies {
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation 'com.google.firebase:firebase-auth'
 
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
 }

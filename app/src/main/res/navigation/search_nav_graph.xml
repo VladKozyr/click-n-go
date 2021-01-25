@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/chooseGroupFragment">
+
+    <fragment
+        android:id="@+id/chooseGroupFragment"
+        android:name="com.clickandgo.ui.navigation.ChooseGroupFragment"
+        android:label="fragment_choose_group"
+        tools:layout="@layout/fragment_choose_group" >
+        <action
+            android:id="@+id/action_chooseGroupFragment_to_chooseTypeFragment"
+            app:destination="@id/chooseTypeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/chooseMoneyFragment"
+        android:name="com.clickandgo.ui.navigation.ChooseMoneyFragment"
+        android:label="fragment_choose_money"
+        tools:layout="@layout/fragment_choose_money" >
+        <action
+            android:id="@+id/action_chooseMoneyFragment_to_choosePlaceFragment"
+            app:destination="@id/choosePlaceFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/choosePlaceFragment"
+        android:name="com.clickandgo.ui.navigation.ChoosePlaceFragment"
+        android:label="fragment_choose_place"
+        tools:layout="@layout/fragment_choose_place" >
+        <action
+            android:id="@+id/action_choosePlaceFragment_to_chooseGroupFragment"
+            app:destination="@id/chooseGroupFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/chooseTypeFragment"
+        android:name="com.clickandgo.ui.navigation.ChooseTypeFragment"
+        android:label="fragment_choose_type"
+        tools:layout="@layout/fragment_choose_type" />
+</navigation>

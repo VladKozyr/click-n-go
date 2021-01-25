@@ -1,3 +1,56 @@
 <resources>
     <string name="app_name">ClickAndGo</string>
+
+    <!-- Login/SignUp-->
+    <string name="login">LOGIN</string>
+    <string name="email">EMAIL</string>
+    <string name="password">PASSWORD</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="name">NAME</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Login/SignUp exceptions -->
+    <string name="incorrect_email_or_password">Incorrect email or password</string>
+    <string name="password_is_less_than_6_characters">Password is less than 6 characters</string>
+    <string name="email_is_already_in_use">Email is already in use</string>
+    <string name="email_address_is_badly_formatted">Email address is badly formatted</string>
+    <string name="field_cannot_be_empty">Field cannot be empty</string>
+
+    <!-- Type block -->
+    <string name="type_question">What?</string>
+
+    <string name="type_coffee">COFFEE</string>
+    <string name="type_eat">EAT</string>
+    <string name="type_vegan">VEGAN</string>
+    <string name="type_bar">BAR</string>
+    <string name="type_hookah">HOOKAH</string>
+
+    <!-- Group block -->
+    <string name="group_question">How many?</string>
+
+    <string name="group_single">SINGLE</string>
+    <string name="group_date">DATE</string>
+    <string name="group_friends">FRIENDS</string>
+    <string name="group_party">PARTY</string>
+    <string name="group_corporate">CORPORATE</string>
+
+    <!-- Money block -->
+    <string name="money_question">How much?</string>
+
+    <string name="money_economy">ECONOMY</string>
+    <string name="money_middle">MIDDLE</string>
+    <string name="money_business">BUSINESS</string>
+    <string name="money_high">HIGH</string>
+    <string name="money_luxury">LUXURY</string>
+
+    <!--Place block-->
+    <string name="place_question">Where?</string>
+
+    <!--Test profile block-->
+    <string name="nickname">Artem Sakh</string>
+    <string name="wishlist">Wishlist</string>
+    <string name="history">History</string>
+    <string name="support_us">Support Us</string>
+
 </resources>
