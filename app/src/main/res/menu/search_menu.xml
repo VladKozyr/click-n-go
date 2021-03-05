@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/chooseTypeFragment"
+        android:icon="@drawable/ic_type_selected"
+        android:orderInCategory="1"
+        android:title="@string/type_question"
+        app:showAsAction="ifRoom">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:icon="@drawable/option_type_coffee"
+                    android:title="@string/type_coffee"
+                    android:titleCondensed="@string/type_coffee_details" />
+                <item
+                    android:icon="@drawable/option_type_eat"
+                    android:title="@string/type_eat"
+                    android:titleCondensed="@string/type_eat_details" />
+                <item
+                    android:icon="@drawable/option_type_vegan"
+                    android:title="@string/type_vegan"
+                    android:titleCondensed="@string/type_vegan_details" />
+                <item
+                    android:icon="@drawable/option_type_bar"
+                    android:title="@string/type_bar"
+                    android:titleCondensed="@string/type_bar_details" />
+                <item
+                    android:icon="@drawable/option_type_hookah"
+                    android:title="@string/type_hookah"
+                    android:titleCondensed="@string/type_hookah_details" />
+            </group>
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/chooseGroupFragment"
+        android:icon="@drawable/ic_group_selected"
+        android:orderInCategory="2"
+        android:title="@string/group_question"
+        app:showAsAction="ifRoom">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:icon="@drawable/option_group_single"
+                    android:title="@string/group_single"
+                    android:titleCondensed="@string/group_single_details" />
+                <item
+                    android:icon="@drawable/option_group_date"
+                    android:title="@string/group_date"
+                    android:titleCondensed="@string/group_date_details" />
+                <item
+                    android:icon="@drawable/option_group_party"
+                    android:title="@string/group_friends"
+                    android:titleCondensed="@string/group_friends_details" />
+                <item
+                    android:icon="@drawable/option_group_friends"
+                    android:title="@string/group_party"
+                    android:titleCondensed="@string/group_party_details" />
+                <item
+                    android:icon="@drawable/option_group_corporate"
+                    android:title="@string/group_corporate"
+                    android:titleCondensed="@string/group_corporate_details" />
+            </group>
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/chooseMoneyFragment"
+        android:icon="@drawable/ic_money_selected"
+        android:orderInCategory="3"
+        android:title="@string/money_question"
+        app:showAsAction="always">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:icon="@drawable/option_money_economy"
+                    android:title="@string/money_economy"
+                    android:titleCondensed="@string/money_economy_details" />
+                <item
+                    android:icon="@drawable/option_money_middle"
+                    android:title="@string/money_middle"
+                    android:titleCondensed="@string/money_middle_details" />
+                <item
+                    android:icon="@drawable/option_money_business"
+                    android:title="@string/money_business"
+                    android:titleCondensed="@string/money_business_details" />
+                <item
+                    android:icon="@drawable/option_money_high"
+                    android:title="@string/money_high"
+                    android:titleCondensed="@string/money_high_details" />
+                <item
+                    android:icon="@drawable/option_money_luxury"
+                    android:title="@string/money_luxury"
+                    android:titleCondensed="@string/money_luxury_details" />
+            </group>
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/choosePlaceFragment"
+        android:orderInCategory="4"
+        android:title="@string/place_question"
+        app:showAsAction="always">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item android:title="@string/type_coffee" />
+                <item android:title="@string/type_eat" />
+                <item android:title="@string/type_vegan" />
+                <item android:title="@string/type_bar" />
+                <item android:title="@string/type_hookah" />
+            </group>
+        </menu>
+    </item>
+</menu>

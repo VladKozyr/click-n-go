@@ -1,0 +1,62 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="option"
+            type="com.clickandgo.model.Option" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginVertical="8dp"
+        android:checkable="true"
+        android:checked="@{option.checked}"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:selectableItemBackground"
+        app:cardBackgroundColor="@drawable/radio_button"
+        app:cardCornerRadius="12dp"
+        app:checkedIcon="@null">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <com.clickandgo.ui.CheckableImageView
+                android:id="@+id/option_icon"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:checked="@{option.checked}"
+                android:src="@{option.icon}" />
+
+            <CheckedTextView
+                android:id="@+id/option_text"
+                style="@style/Option.OptionText"
+                android:layout_width="266dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:checked="@{option.checked}"
+                android:text="@{option.name}"
+                android:textColor="@drawable/option_text_selector" />
+
+            <TextView
+                android:id="@+id/option_details"
+                style="@style/Option.OptionDetails"
+                android:layout_width="35dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@{option.description}"
+                android:textColor="@color/unselected_text" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

@@ -1,5 +1,6 @@
 package com.clickandgo.ui.auth;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.clickandgo.SearchActivity;
 import com.clickandgo.ui.NavigationHost;
 import com.clickandgo.R;
 import com.clickandgo.ui.TempFragmentUserAuthed;
@@ -56,7 +58,7 @@ public class SignUpFragment extends Fragment {
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(getActivity(), task -> {
                     if (task.isSuccessful()) {
-                        ((NavigationHost) getActivity()).navigateTo(new TempFragmentUserAuthed(), false); // Navigate to the next Fragment
+                        startActivity(new Intent(getContext(), SearchActivity.class)); // Navigate to the next Fragment
                     } else {
                         if (!task.isSuccessful()) handleFirebaseException(task.getException());
                     }

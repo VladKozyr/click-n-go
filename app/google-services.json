@@ -1,35 +1,50 @@
-
 {
   "project_info": {
-    "project_number": "67350269361",
-    "project_id": "fir-auth-5e1bc",
-    "storage_bucket": "fir-auth-5e1bc.appspot.com"
+    "project_number": "245013619792",
+    "firebase_url": "https://places-1f623.firebaseio.com",
+    "project_id": "places-1f623",
+    "storage_bucket": "places-1f623.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:67350269361:android:28793bdaf6f647b42dc190",
+        "mobilesdk_app_id": "1:245013619792:android:27600b7e9890b8ae385d55",
         "android_client_info": {
-          "package_name": "com.example.clickandgo"
+          "package_name": "com.clickandgo"
         }
       },
       "oauth_client": [
         {
-          "client_id": "67350269361-0b1vc1d8a0sd8glsvd0lalqstkho8bid.apps.googleusercontent.com",
+          "client_id": "245013619792-c80fphs601ct0u8hganvim5mje17t97j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.clickandgo",
+            "certificate_hash": "31cf38b778906f0707f3122b5e1c9cf348698128"
+          }
+        },
+        {
+          "client_id": "245013619792-3nlvrl7e5oqjm2hmb4pcriesgetf53an.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAnFqBwlM2g35qwFr5piwrpF-vuBggdkCo"
+          "current_key": "AIzaSyCvpNm2MEj0xFbsazoKUBQNUyH4otmqca4"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "67350269361-0b1vc1d8a0sd8glsvd0lalqstkho8bid.apps.googleusercontent.com",
+              "client_id": "245013619792-3nlvrl7e5oqjm2hmb4pcriesgetf53an.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "245013619792-0net7mm334hpr62c01pqfpbdsv20hvbr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.linas.ClickNGo"
+              }
             }
           ]
         }

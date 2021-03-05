@@ -26,6 +26,12 @@
     <string name="type_bar">BAR</string>
     <string name="type_hookah">HOOKAH</string>
 
+    <string name="type_coffee_details" />
+    <string name="type_eat_details" />
+    <string name="type_vegan_details" />
+    <string name="type_bar_details" />
+    <string name="type_hookah_details" />
+
     <!-- Group block -->
     <string name="group_question">How many?</string>
 
@@ -34,6 +40,12 @@
     <string name="group_friends">FRIENDS</string>
     <string name="group_party">PARTY</string>
     <string name="group_corporate">CORPORATE</string>
+
+    <string name="group_single_details">1</string>
+    <string name="group_date_details">2</string>
+    <string name="group_friends_details">&lt;5</string>
+    <string name="group_party_details">&lt;10</string>
+    <string name="group_corporate_details">∞</string>
 
     <!-- Money block -->
     <string name="money_question">How much?</string>
@@ -44,6 +56,12 @@
     <string name="money_high">HIGH</string>
     <string name="money_luxury">LUXURY</string>
 
+    <string name="money_economy_details">&lt;100</string>
+    <string name="money_middle_details">&lt;200</string>
+    <string name="money_business_details">&lt;300</string>
+    <string name="money_high_details">&lt;500</string>
+    <string name="money_luxury_details">∞</string>
+
     <!--Place block-->
     <string name="place_question">Where?</string>
 
@@ -52,5 +70,6 @@
     <string name="wishlist">Wishlist</string>
     <string name="history">History</string>
     <string name="support_us">Support Us</string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>
