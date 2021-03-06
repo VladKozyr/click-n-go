@@ -27,7 +27,7 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <com.clickandgo.ui.CheckableImageView
+            <com.clickandgo.ui.custom.CheckableImageView
                 android:id="@+id/option_icon"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"

@@ -29,7 +29,6 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        //ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.option);
         try {
             this.getSupportActionBar().hide();
         } catch (Exception e) {
@@ -66,6 +65,4 @@ public class SearchActivity extends AppCompatActivity {
     public void onProfileIconClick(View view) {
         startActivity(new Intent(this, ProfileActivity.class));
     }
-
-
 }

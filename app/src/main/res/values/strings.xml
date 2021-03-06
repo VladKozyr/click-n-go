@@ -62,8 +62,12 @@
     <string name="money_high_details">&lt;500</string>
     <string name="money_luxury_details">∞</string>
 
-    <!--Place block-->
+    <!--PlaceResult block-->
     <string name="place_question">Where?</string>
+    <string name="search">Search</string>
+
+    <!-- Search block -->
+    <string name="go">Go!</string>
 
     <!--Test profile block-->
     <string name="nickname">Artem Sakh</string>
@@ -71,5 +75,61 @@
     <string name="history">History</string>
     <string name="support_us">Support Us</string>
     <string name="title_activity_maps">Map</string>
+
+    <string-array name="subway_stations">
+        <item>Іподром</item>
+        <item>Академмістечко</item>
+        <item>Арсенальна</item>
+        <item>Берестейська</item>
+        <item>Бориспільська</item>
+        <item>Васильківська</item>
+        <item>Видубичі</item>
+        <item>Вирлиця</item>
+        <item>Виставковий центр</item>
+        <item>Вокзальна</item>
+        <item>Героїв Дніпра</item>
+        <item>Голосіївська</item>
+        <item>Гідропарк</item>
+        <item>Дарниця</item>
+        <item>Деміївська</item>
+        <item>Дніпро</item>
+        <item>Дорогожичі</item>
+        <item>Дружби народів</item>
+        <item>Житомирська</item>
+        <item>Золоті ворота</item>
+        <item>Кловська</item>
+        <item>Контрактова площа</item>
+        <item>Либідська</item>
+        <item>Лук\'янівська</item>
+        <item>Лівобережна</item>
+        <item>Лісова</item>
+        <item>Майдан Незалежності</item>
+        <item>Мінська</item>
+        <item>Нивки</item>
+        <item>Оболонь</item>
+        <item>Олімпійська</item>
+        <item>Осокорки</item>
+        <item>Палац «Україна»</item>
+        <item>Палац спорту</item>
+        <item>Печерська</item>
+        <item>Площа Льва Толстого</item>
+        <item>Позняки</item>
+        <item>Політехнічний інститут</item>
+        <item>Почайна</item>
+        <item>Поштова площа</item>
+        <item>Святошин</item>
+        <item>Сирець</item>
+        <item>Славутич</item>
+        <item>Тараса Шевченка</item>
+        <item>Театральна</item>
+        <item>Теремки</item>
+        <item>Університет</item>
+        <item>Харківська</item>
+        <item>Хрещатик</item>
+        <item>Центр</item>
+        <item>Червоний хутір</item>
+        <item>Чернігівська</item>
+        <item>Шулявська</item>
+    </string-array>
 
 </resources>

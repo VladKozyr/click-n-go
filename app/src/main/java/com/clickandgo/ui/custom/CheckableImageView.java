@@ -1,4 +1,4 @@
-package com.clickandgo.ui;
+package com.clickandgo.ui.custom;
 
 import android.content.Context;
 import android.os.Parcel;

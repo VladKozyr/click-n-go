@@ -21,12 +21,17 @@
         android:icon="@drawable/ic_money_selected"
         android:orderInCategory="3"
         android:title="@string/money_question"
-        app:showAsAction="always"
-        />
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/choosePlaceFragment"
         android:orderInCategory="4"
         android:title="@string/place_question"
         app:showAsAction="always" />
+
+    <item
+        android:id="@+id/chooseResultFragment"
+        android:orderInCategory="5"
+        android:title="@string/go"
+        app:showAsAction="ifRoom" />
 </menu>
