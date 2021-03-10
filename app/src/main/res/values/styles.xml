@@ -49,4 +49,16 @@
         <item name="android:minHeight">32dip</item>
         <item name="android:maxHeight">32dip</item>
     </style>
+
+    <!-- Search style -->
+    
+    <style name="Search">
+        
+    </style>
+    
+    <style name="Search.Question">
+        <item name="android:textSize">36sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>

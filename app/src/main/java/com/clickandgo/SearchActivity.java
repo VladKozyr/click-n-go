@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
+import android.widget.ViewSwitcher;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -17,7 +19,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class SearchActivity extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity implements ViewSwitcher.ViewFactory {
 
     private BottomNavigationView mBottomNavigationView;
     private TextView mSearchQuestion;
@@ -37,14 +39,7 @@ public class SearchActivity extends AppCompatActivity {
 
         //mSearchQuestion = findViewById(R.id.searchQuestionView);
         mTextSwitcher = findViewById(R.id.text_switcher);
-        mTextSwitcher.setFactory(() -> {
-            mSearchQuestion = new TextView(this);
-            mSearchQuestion.setText("");
-            mSearchQuestion.setTextSize(36);
-            mSearchQuestion.setTextColor(Color.WHITE);
-            mSearchQuestion.setGravity(View.TEXT_ALIGNMENT_CENTER);
-            return mSearchQuestion;
-        });
+        mTextSwitcher.setFactory(this);
         setUpQuestionNavigation();
     }
 
@@ -64,5 +59,12 @@ public class SearchActivity extends AppCompatActivity {
 
     public void onProfileIconClick(View view) {
         startActivity(new Intent(this, ProfileActivity.class));
+    }
+
+    @Override
+    public View makeView() {
+        TextView textView = new TextView(this);
+        textView.setTextAppearance(this, R.style.Search_Question);
+        return textView;
     }
 }
