@@ -2,18 +2,23 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/teal_700"
+    android:backgroundTint="@color/black"
     android:orientation="vertical">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/login_email_text_input"
+        style="@style/TextInputLayoutClickNGo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/EditTextStyle"
+        android:layout_marginTop="46dp"
+        android:layout_marginBottom="18dp"
         android:hint="@string/email">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/login_email_edit_text"
+            style="@style/TextInputEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress" />
@@ -21,23 +26,29 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/login_password_text_input"
+        style="@style/TextInputLayoutClickNGo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/EditTextStyle"
+        app:endIconDrawable="@drawable/show_password_selector"
+        app:endIconMode="password_toggle"
+        app:endIconTintMode="screen"
         android:hint="@string/password">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/login_password_edit_text"
             android:layout_width="match_parent"
+            style="@style/TextInputEditText"
             android:layout_height="wrap_content"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btn_login"
-        style="@style/Widget.MaterialComponents.Button"
+        style="@style/ButtonClickNGoStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="136dp"
         android:text="@string/login" />
 
 </LinearLayout>

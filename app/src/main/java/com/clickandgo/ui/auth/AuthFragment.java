@@ -1,6 +1,6 @@
 package com.clickandgo.ui.auth;
 
-import android.content.Intent;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -12,12 +12,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.clickandgo.R;
-import com.clickandgo.SearchActivity;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -29,16 +29,23 @@ public class AuthFragment extends Fragment {
     FragmentAdapter myFragmentAdapter;
     ViewPager viewPager;
 
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        //todo replace to another method
+
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        if (currentUser != null) {
-            startActivity(new Intent(getContext(), SearchActivity.class));// Navigate to the next Fragment
-        }
+//        if (currentUser != null) {
+//            startActivity(new Intent(getContext(), SearchActivity.class));// Navigate to the next Fragment
+//        }
 
         return inflater.inflate(R.layout.fragment_auth, container, false);
     }
@@ -48,7 +55,7 @@ public class AuthFragment extends Fragment {
         //TODO delete app name from tool bar another way
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setDisplayShowTitleEnabled(false);
         myFragmentAdapter = new FragmentAdapter(getChildFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, getContext());
-        viewPager = view.findViewById(R.id.view_pager);
+        viewPager = view.findViewById(R.id.viewPager);
         viewPager.setAdapter(myFragmentAdapter);
 
         TabLayout tabLayout = view.findViewById(R.id.tab_layout);
@@ -91,14 +98,17 @@ public class AuthFragment extends Fragment {
                 viewPager.setCurrentItem(tab.getPosition());
                 TextView text = (TextView) tab.getCustomView();
                 text.setAlpha(1);
+                text.setTextSize(19);
                 text.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD);
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
                 TextView text = (TextView) tab.getCustomView();
+                Typeface tf = ResourcesCompat.getFont(requireContext(), R.font.sf_light);
                 text.setAlpha(0.5f);
-                text.setTypeface(Typeface.SANS_SERIF, Typeface.NORMAL);
+                text.setTextSize(18);
+                text.setTypeface(tf);
             }
 
             @Override

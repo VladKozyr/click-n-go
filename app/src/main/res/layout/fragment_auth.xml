@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     android:orientation="vertical"
     tools:context=".ui.auth.AuthFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/black">
 
         <ImageView
             android:layout_width="159dp"
@@ -18,19 +20,28 @@
             android:background="@drawable/ic_llama" />
 
         <androidx.viewpager.widget.ViewPager
-            android:id="@+id/view_pager"
+            android:id="@+id/viewPager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tab_layout"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="33dp"
+                android:layout_marginStart="79dp"
                 android:background="?colorPrimary"
-                app:tabSelectedTextColor="?colorOnPrimary"
-                app:tabTextColor="#50FFFFFF"
+                android:backgroundTint="@color/black"
+                app:tabBackground="@color/black"
                 app:tabGravity="center"
-                app:tabTextAppearance="@style/TextAppearance.AppCompat.Large">
+                app:tabIndicatorColor="@color/selected"
+                app:tabIndicatorFullWidth="false"
+                app:tabIndicatorHeight="5dp"
+                app:tabPaddingBottom="10dp"
+                app:tabPaddingEnd="27dp"
+                app:tabPaddingStart="27dp"
+                app:tabSelectedTextColor="?colorOnPrimary"
+                app:tabTextAppearance="@style/TextAppearance.AppCompat.Large"
+                app:tabTextColor="#50FFFFFF">
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="109dp"

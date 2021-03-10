@@ -1,58 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cardview_dark_background"
+    android:background="@color/black"
     android:orientation="vertical">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/sign_up_name_text_input"
-        style="@style/EditTextStyle"
+        style="@style/TextInputLayoutClickNGo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="46dp"
+        android:layout_marginBottom="18dp"
         android:hint="@string/name">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/sign_up_name_edit_text"
+            style="@style/TextInputEditText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"/>
+            android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/sign_up_email_text_input"
-        style="@style/EditTextStyle"
+        style="@style/TextInputLayoutClickNGo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="18dp"
         android:hint="@string/email">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/sign_up_email_edit_text"
+            style="@style/TextInputEditText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/sign_up_password_text_input"
-        style="@style/EditTextStyle"
+        style="@style/TextInputLayoutClickNGo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/password">
+        android:hint="@string/password"
+        app:endIconDrawable="@drawable/show_password_selector"
+        app:endIconMode="password_toggle"
+        app:endIconTintMode="screen"
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/sign_up_password_edit_text"
+            style="@style/TextInputEditText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btn_sign_up"
-        style="@style/Widget.MaterialComponents.Button"
+        style="@style/ButtonClickNGoStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="81dp"
         android:text="@string/sign_up" />
 
 </LinearLayout>

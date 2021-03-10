@@ -13,12 +13,6 @@ import com.clickandgo.ui.NavigationHost;
 
 
 public class AuthActivity extends AppCompatActivity implements NavigationHost {
-    //Todo 1 - delete keyboard +
-    //todo 2 - refactor
-    //todo 3 - handle empty input +
-    //todo 4 - createOneStyleForEditTexts and buttons +-(started)
-    //todo 5 - delete app name from toolbar correctly
-    //todo 6 - handle firebase exceptions +
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
