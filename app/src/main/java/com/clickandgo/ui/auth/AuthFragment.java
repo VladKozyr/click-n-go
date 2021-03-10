@@ -1,6 +1,7 @@
 package com.clickandgo.ui.auth;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.clickandgo.R;
+import com.clickandgo.SearchActivity;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -43,9 +45,9 @@ public class AuthFragment extends Fragment {
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
-//        if (currentUser != null) {
-//            startActivity(new Intent(getContext(), SearchActivity.class));// Navigate to the next Fragment
-//        }
+        if (currentUser != null) {
+            startActivity(new Intent(getContext(), SearchActivity.class));// Navigate to the next Fragment
+        }
 
         return inflater.inflate(R.layout.fragment_auth, container, false);
     }

@@ -9,20 +9,31 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ClickAndGo">
-        <activity android:name=".AuthActivity"/>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity android:name=".AuthActivity" />
+
+        <activity
+            android:name=".MapsActivity"
+            android:label="@string/title_activity_maps" />
+
         <activity
             android:name=".SearchActivity"
             android:parentActivityName=".AuthActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".AuthActivity"></meta-data>
+                android:value=".AuthActivity" />
         </activity>
+
         <activity
             android:name=".ProfileActivity"
             android:parentActivityName=".SearchActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".SearchActivity"></meta-data>
+                android:value=".SearchActivity" />
         </activity>
         <activity android:name=".ui.SplashActivity" android:theme="@style/SplashTheme">
             <intent-filter>
