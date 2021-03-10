@@ -10,9 +10,9 @@
     tools:context=".SearchActivity">
 
     <View
-        android:id="@+id/divider3"
+        android:id="@+id/divider"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="0.5dp"
         android:alpha="0.5"
         android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,11 +24,12 @@
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:paddingVertical="10dp"
         app:defaultNavHost="true"
         app:layout_constraintBottom_toTopOf="@+id/question_navigation_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/divider3"
+        app:layout_constraintTop_toTopOf="@+id/divider"
         app:navGraph="@navigation/search_nav_graph" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -49,17 +50,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textView"
+        <TextSwitcher
+            android:id="@+id/text_switcher"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:layout_weight="1"
-            android:fontFamily="@font/sf_bold"
-            android:text="@string/money_question"
-            android:textColor="@color/white"
-            android:textColorHighlight="#FFFFFF"
-            android:textSize="36sp" />
+            android:layout_gravity="center_vertical"
+            android:inAnimation="@android:anim/slide_in_left"
+            android:outAnimation="@android:anim/slide_out_right" />
 
         <ImageView
             android:id="@+id/imageView"

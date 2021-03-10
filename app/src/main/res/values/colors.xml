@@ -13,4 +13,8 @@
     <color name="background">#FF000000</color>
     <color name="unselected">#33ADB7C2</color>
     <color name="selected">#3BFEB8</color>
+
+    <color name="unselected_text">#ADB7C2</color>
+
+    <color name="white_30">#4DFFFFFF</color>
 </resources>

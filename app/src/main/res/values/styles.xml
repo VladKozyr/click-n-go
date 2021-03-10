@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
+
+    <style name="EditTextStyle" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="android:maxLines">1</item>
+    </style>
 
     <style name="TextInputLayoutClickNGo" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
         <item name="android:maxLines">1</item>
@@ -26,6 +30,63 @@
 
     <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/splash</item>
+    </style>
+
+    <style name="Option">
+        <item name="height">80dp</item>
+        <item name="android:layout_margin">10dp</item>
+    </style>
+
+    <style name="Option.OptionText">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Option.OptionDetails">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@drawable/option_text_selector</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Result">
+
+    </style>
+
+    <style name="Result.ResultDetails">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:drawablePadding">5dp</item>
+    </style>
+
+    <style name="Result.ResultTitle">
+        <item name="android:textSize">32sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Result.ResultDescription">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="RatingBar" parent="Widget.AppCompat.RatingBar">
+        <item name="android:progressDrawable">@drawable/custom_ratingbar</item>
+        <item name="android:minHeight">32dip</item>
+        <item name="android:maxHeight">32dip</item>
+    </style>
+
+    <!-- Search style -->
+
+    <style name="Search">
+
+    </style>
+
+    <style name="Search.Question">
+        <item name="android:textSize">36sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
 
