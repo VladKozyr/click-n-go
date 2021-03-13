@@ -30,7 +30,9 @@
 
         <activity
             android:name=".ProfileActivity"
-            android:parentActivityName=".SearchActivity">
+            android:parentActivityName=".SearchActivity"
+            android:theme="@style/ClickNGoNoActionBar"
+            >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".SearchActivity" />

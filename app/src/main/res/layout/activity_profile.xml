@@ -1,83 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
-    android:padding="20dp"
-    tools:context=".ProfileActivity">
+    android:background="#1A1C1B">
 
-    <LinearLayout
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="244dp"
+        android:background="@drawable/profile_rounded_background">
 
-        <LinearLayout
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsingToolbar"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            app:collapsedTitleGravity="start"
+            app:collapsedTitleTextAppearance="@style/ProfileCollapsedTextStyle"
+            app:expandedTitleGravity="top"
+            app:expandedTitleMarginStart="26dp"
+            app:expandedTitleMarginTop="20dp"
+            app:expandedTitleTextAppearance="@style/ProfileTextStyle"
+            app:layout_scrollFlags="scroll|snap"
+            app:title="Artem Sakh">
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:fontFamily="@font/sf_bold"
-                android:text="@string/nickname"
-                android:textColor="@color/white"
-                android:textSize="36sp" />
 
             <ImageView
-                android:id="@+id/back_arrow"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                app:srcCompat="@drawable/ic_arrow"
-                android:onClick="onBackArrowClick"/>
-        </LinearLayout>
+                android:id="@+id/arrow"
+                android:layout_width="25dp"
+                android:layout_height="19dp"
+                android:layout_marginStart="350dp"
+                android:layout_marginTop="30dp"
+                android:translationZ="0.5dp"
+                android:background="@drawable/ic_arrow" />
 
-        <View
-            android:id="@+id/divider4"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:alpha="0.5"
-            android:background="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <com.google.android.material.tabs.TabLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="fill_vertical">
-
-            <com.google.android.material.tabs.TabItem
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/wishlist" />
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="100dp"
+                android:background="@drawable/ic_big_profile_icon" />
 
-            <com.google.android.material.tabs.TabItem
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="70dp"
+                android:layout_marginEnd="26dp"
+                android:alpha="0.5"
+                android:background="@color/white" />
+
+            <TextView
+                android:id="@+id/textViewEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/history" />
+                android:layout_marginStart="180dp"
+                android:layout_marginTop="110dp"
+                android:fontFamily="@font/sf_regular"
+                android:text="@string/clickngo_gmail_com"
+                android:textColor="@color/selected"
+                android:textSize="15sp" />
 
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/support_us" />
-        </com.google.android.material.tabs.TabLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonChangeEmail"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="156dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="180dp"
+                android:layout_marginTop="150dp"
+                android:fontFamily="@font/sf_light"
+                android:text="@string/change_email"
+                android:textAllCaps="false"
+                android:textColor="#3BFEB8"
+                android:textSize="15sp"
+                app:cornerRadius="7dp"
+                app:strokeColor="#3BFEB8"
+                app:strokeWidth="0.5dp"
 
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+                />
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="47dp"
+                android:gravity="top"
+                app:layout_collapseMode="pin"
+                app:titleMarginTop="0dp" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/profileViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="64dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginEnd="26dp"
+        android:alpha="0.1"
+        android:background="@color/white"
+        android:translationZ="0.5dp"
+        app:layout_anchor="@id/profileTabLayout"
+        app:layout_anchorGravity="bottom" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/profileTabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom"
+        android:layout_marginEnd="55dp"
+        android:background="#1A1C1B"
+        app:layout_anchor="@id/appbar"
+        app:layout_anchorGravity="bottom"
+        app:tabIndicator="@drawable/profile_tab_indicator"
+        app:tabIndicatorColor="@color/selected"
+        app:tabIndicatorFullWidth="false"
+        app:tabIndicatorHeight="3dp"
+        app:tabPaddingBottom="14dp"
+        app:tabPaddingTop="5dp"
+        app:tabTextAppearance="@style/ProfileTabTextStyle"
+        app:tabTextColor="@color/grey">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="109dp"
+            android:layout_height="33dp"
+            android:text="@string/wishlist" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="109dp"
+            android:layout_height="33dp"
+            android:text="@string/history" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="109dp"
+            android:layout_height="33dp"
+            android:text="@string/support_us" />
+
+
+    </com.google.android.material.tabs.TabLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
