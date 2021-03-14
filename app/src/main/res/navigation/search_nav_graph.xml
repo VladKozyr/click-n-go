@@ -8,37 +8,45 @@
         android:id="@+id/chooseTypeFragment"
         android:name="com.clickandgo.ui.navigation.ChooseTypeFragment"
         android:label="fragment_choose_type"
-        tools:layout="@layout/fragment_choose_type" >
+        tools:layout="@layout/fragment_choose_type">
         <action
             android:id="@+id/action_chooseTypeFragment_to_chooseMoneyFragment"
-            app:destination="@id/chooseMoneyFragment" />
+            app:destination="@id/chooseMoneyFragment"
+            app:enterAnim="@android:anim/slide_out_right"
+            app:exitAnim="@android:anim/slide_in_left" />
     </fragment>
     <fragment
         android:id="@+id/chooseGroupFragment"
         android:name="com.clickandgo.ui.navigation.ChooseGroupFragment"
         android:label="fragment_choose_group"
-        tools:layout="@layout/fragment_choose_group" >
+        tools:layout="@layout/fragment_choose_group">
         <action
             android:id="@+id/action_chooseGroupFragment_to_choosePlaceFragment"
-            app:destination="@id/choosePlaceFragment" />
+            app:destination="@id/choosePlaceFragment"
+            app:enterAnim="@android:anim/slide_out_right"
+            app:exitAnim="@android:anim/slide_in_left" />
     </fragment>
     <fragment
         android:id="@+id/chooseMoneyFragment"
         android:name="com.clickandgo.ui.navigation.ChooseMoneyFragment"
         android:label="fragment_choose_money"
-        tools:layout="@layout/fragment_choose_money" >
+        tools:layout="@layout/fragment_choose_money">
         <action
             android:id="@+id/action_chooseMoneyFragment_to_chooseGroupFragment2"
-            app:destination="@id/chooseGroupFragment" />
+            app:destination="@id/chooseGroupFragment"
+            app:enterAnim="@android:anim/slide_out_right"
+            app:exitAnim="@android:anim/slide_in_left" />
     </fragment>
     <fragment
         android:id="@+id/choosePlaceFragment"
         android:name="com.clickandgo.ui.navigation.ChoosePlaceFragment"
         android:label="fragment_choose_place"
-        tools:layout="@layout/fragment_choose_place" >
+        tools:layout="@layout/fragment_choose_place">
         <action
             android:id="@+id/action_choosePlaceFragment_to_chooseResultFragment"
-            app:destination="@id/chooseResultFragment" />
+            app:destination="@id/chooseResultFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/chooseResultFragment"

@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ConstraintSet android:id="@+id/base">
+        <Constraint
+            android:id="@+id/type_icon"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/type_bg"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="@id/type_bg"
+            app:layout_constraintTop_toTopOf="parent">
+            <CustomAttribute
+                app:attributeName="crossfade"
+                app:customFloatValue="0" />
+            <CustomAttribute
+                app:attributeName="padding"
+                app:customDimension="8dp" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/party_icon"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/party_bg"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="@id/party_bg"
+            app:layout_constraintTop_toTopOf="parent">
+            <CustomAttribute
+                app:attributeName="crossfade"
+                app:customFloatValue="0" />
+            <CustomAttribute
+                app:attributeName="padding"
+                app:customDimension="8dp" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/money_icon"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/money_bg"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="@id/money_bg"
+            app:layout_constraintTop_toTopOf="parent">
+            <CustomAttribute
+                app:attributeName="crossfade"
+                app:customFloatValue="0" />
+            <CustomAttribute
+                app:attributeName="padding"
+                app:customDimension="8dp" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/place_icon"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/place_bg"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="@id/place_bg"
+            app:layout_constraintTop_toTopOf="parent">
+            <CustomAttribute
+                app:attributeName="crossfade"
+                app:customFloatValue="0" />
+            <CustomAttribute
+                app:attributeName="padding"
+                app:customDimension="8dp" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/action_button"
+            android:layout_width="0dp"
+            android:layout_height="75dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@+id/back_button"
+            android:layout_width="0dp"
+            android:layout_height="75dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </ConstraintSet>
+
+    <ConstraintSet
+        android:id="@+id/type_expanded"
+        app:deriveConstraintsFrom="@id/base">
+        <Constraint
+            android:id="@+id/type_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/type_bg"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="@id/type_bg"
+            app:layout_constraintTop_toTopOf="parent">
+            <CustomAttribute
+                app:attributeName="crossfade"
+                app:customFloatValue="1" />
+            <CustomAttribute
+                app:attributeName="padding"
+                app:customDimension="20dp" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/type_bg"
+            android:layout_width="150dp"
+            android:layout_height="75dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/party_bg"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </ConstraintSet>
+
+    <ConstraintSet
+        android:id="@+id/party_expanded"
+        app:deriveConstraintsFrom="@id/base">
+        <Constraint
+            android:id="@+id/party_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/party_bg"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="@id/party_bg"
+            app:layout_constraintTop_toTopOf="parent">
+            <CustomAttribute
+                app:attributeName="crossfade"
+                app:customFloatValue="1" />
+            <CustomAttribute
+                app:attributeName="padding"
+                app:customDimension="20dp" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/party_bg"
+            android:layout_width="150dp"
+            android:layout_height="75dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/money_bg"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toEndOf="@id/type_bg"
+            app:layout_constraintTop_toTopOf="parent" />
+    </ConstraintSet>
+
+    <ConstraintSet
+        android:id="@+id/money_expanded"
+        app:deriveConstraintsFrom="@id/base">
+        <Constraint
+            android:id="@+id/money_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/money_bg"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="@id/money_bg"
+            app:layout_constraintTop_toTopOf="parent">
+            <CustomAttribute
+                app:attributeName="crossfade"
+                app:customFloatValue="1" />
+            <CustomAttribute
+                app:attributeName="padding"
+                app:customDimension="20dp" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/money_bg"
+            android:layout_width="150dp"
+            android:layout_height="75dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/place_bg"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toEndOf="@id/party_bg"
+            app:layout_constraintTop_toTopOf="parent" />
+    </ConstraintSet>
+
+    <ConstraintSet
+        android:id="@+id/place_expanded"
+        app:deriveConstraintsFrom="@id/base">
+        <Constraint
+            android:id="@+id/place_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/place_bg"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="@id/place_bg"
+            app:layout_constraintTop_toTopOf="parent">
+            <CustomAttribute
+                app:attributeName="crossfade"
+                app:customFloatValue="1" />
+            <CustomAttribute
+                app:attributeName="padding"
+                app:customDimension="0dp" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/place_bg"
+            android:layout_width="150dp"
+            android:layout_height="75dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toEndOf="@id/money_bg"
+            app:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@id/action_button"
+            android:layout_width="wrap_content"
+            android:layout_height="75dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </ConstraintSet>
+
+    <ConstraintSet
+        android:id="@+id/result"
+        app:deriveConstraintsFrom="@id/place_expanded">
+        <Constraint
+            android:id="@+id/action_button"
+            android:layout_width="fill_parent"
+            android:layout_height="75dp"
+            android:layout_marginStart="140dp"
+            android:translationZ="150dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@+id/back_button"
+            android:layout_width="fill_parent"
+            android:layout_height="75dp"
+            android:layout_marginStart="25dp"
+            android:translationZ="100dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </ConstraintSet>
+
+    <Transition
+        android:id="@+id/type_transition"
+        app:constraintSetEnd="@id/type_expanded"
+        app:constraintSetStart="@id/base"
+        app:duration="150" />
+
+    <Transition
+        android:id="@+id/party_transition"
+        app:constraintSetEnd="@id/party_expanded"
+        app:constraintSetStart="@id/base"
+        app:duration="150" />
+
+
+    <Transition
+        android:id="@+id/money_transition"
+        app:constraintSetEnd="@id/money_expanded"
+        app:constraintSetStart="@id/base"
+        app:duration="150" />
+
+
+    <Transition
+        android:id="@+id/place_transition"
+        app:constraintSetEnd="@id/place_expanded"
+        app:constraintSetStart="@id/base"
+        app:duration="150" />
+
+    <Transition
+        android:id="@+id/result_transition"
+        app:constraintSetEnd="@id/result"
+        app:constraintSetStart="@id/place_expanded"
+        app:duration="300" />
+</MotionScene>

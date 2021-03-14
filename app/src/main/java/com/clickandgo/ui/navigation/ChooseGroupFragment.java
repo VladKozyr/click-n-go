@@ -1,6 +1,7 @@
 package com.clickandgo.ui.navigation;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ public class ChooseGroupFragment extends ChooseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Log.d("ON CREATE", "VIEW");
         return inflater.inflate(R.layout.fragment_choose_group, container, false);
     }
 

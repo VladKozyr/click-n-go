@@ -32,6 +32,6 @@
     <item
         android:id="@+id/chooseResultFragment"
         android:orderInCategory="5"
-        android:title="@string/go"
-        app:showAsAction="ifRoom" />
+        android:title="@string/go_question"
+        app:showAsAction="never" />
 </menu>

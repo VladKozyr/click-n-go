@@ -67,7 +67,7 @@
     <string name="search">Search</string>
 
     <!-- Search block -->
-    <string name="go">Go!</string>
+    <string name="go_question">Go!</string>
 
     <!--Test profile block-->
     <string name="nickname">Artem Sakh</string>
@@ -75,6 +75,9 @@
     <string name="history">History</string>
     <string name="support_us">Support Us</string>
     <string name="title_activity_maps">Map</string>
+
+    <!-- Action labels -->
+    <string name="go">GO</string>
 
     <string-array name="subway_stations">
         <item>Іподром</item>

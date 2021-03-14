@@ -1,72 +1,209 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/search_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    android:paddingLeft="21dp"
-    android:paddingRight="21dp"
+
     tools:context=".SearchActivity">
 
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:alpha="0.5"
-        android:background="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/question_fragment_view"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:paddingVertical="10dp"
-        app:defaultNavHost="true"
-        app:layout_constraintBottom_toTopOf="@+id/question_navigation_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/divider"
-        app:navGraph="@navigation/search_nav_graph" />
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/question_navigation_view"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/search_nav_menu" />
-
     <LinearLayout
-        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent"
+        android:layout_above="@+id/question_navigation_view"
+        android:orientation="vertical"
+        android:padding="20dp">
 
-        <TextSwitcher
-            android:id="@+id/text_switcher"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center_vertical"
-            android:inAnimation="@android:anim/slide_in_left"
-            android:outAnimation="@android:anim/slide_out_right" />
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:onClick="onProfileIconClick"
-            app:srcCompat="@drawable/ic_profile" />
+            <TextSwitcher
+                android:id="@+id/text_switcher"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:inAnimation="@android:anim/slide_in_left"
+                android:outAnimation="@android:anim/slide_out_right" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:onClick="onProfileIconClick"
+                app:srcCompat="@drawable/ic_profile" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="0.75dp"
+            android:alpha="0.5"
+            android:background="@color/white" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/question_fragment_view"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingVertical="10dp"
+            app:defaultNavHost="true"
+            app:layout_constraintBottom_toTopOf="@+id/question_navigation_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/divider"
+            app:navGraph="@navigation/search_nav_graph" />
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@id/question_navigation_view"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_alignParentBottom="true"
+        app:layoutDescription="@xml/activity_search_scene">
+
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@id/type_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@null"
+            android:visibility="invisible"
+            app:altSrc="@drawable/menu_item"
+            app:crossfade="1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/party_bg"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@+id/type_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:src="@drawable/ic_type"
+            app:altSrc="@drawable/ic_type_selected"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/type_bg"
+            app:layout_constraintStart_toStartOf="@id/type_bg"
+            app:layout_constraintTop_toTopOf="parent"
+            app:overlay="false" />
+
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@+id/party_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@null"
+            android:visibility="invisible"
+            app:altSrc="@drawable/menu_item"
+            app:crossfade="1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/money_bg"
+            app:layout_constraintStart_toEndOf="@id/type_bg"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@+id/party_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:src="@drawable/ic_group"
+            app:altSrc="@drawable/ic_group_selected"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/party_bg"
+            app:layout_constraintStart_toStartOf="@id/party_bg"
+            app:layout_constraintTop_toTopOf="parent"
+            app:overlay="false" />
+
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@+id/money_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@null"
+            android:visibility="invisible"
+            app:altSrc="@drawable/menu_item"
+            app:crossfade="1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/place_bg"
+            app:layout_constraintStart_toEndOf="@id/party_bg"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@+id/money_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:padding="8dp"
+            android:src="@drawable/ic_money"
+            app:altSrc="@drawable/ic_money_selected"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/money_bg"
+            app:layout_constraintStart_toStartOf="@id/money_bg"
+            app:layout_constraintTop_toTopOf="parent"
+            app:overlay="false" />
+
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@+id/place_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@null"
+            android:visibility="invisible"
+            app:altSrc="@drawable/menu_item"
+            app:crossfade="1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/money_bg"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@+id/place_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:padding="8dp"
+            android:src="@drawable/ic_place"
+            app:altSrc="@drawable/ic_place_selected"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/place_bg"
+            app:layout_constraintStart_toStartOf="@id/place_bg"
+            app:layout_constraintTop_toTopOf="parent"
+            app:overlay="false" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/action_button"
+            style="@style/ActionButton"
+            android:layout_width="0dp"
+            android:layout_height="75dp"
+            android:background="@drawable/action_button"
+            android:elegantTextHeight="true"
+            android:singleLine="true"
+            android:text="@string/go"
+            android:translationZ="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="75dp"
+            android:layout_marginStart="24dp"
+            android:background="@drawable/back_button"
+            android:drawableStart="@drawable/ic_back_arrow"
+            android:paddingStart="55dp"
+            android:translationZ="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RtlSymmetry" />
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+</RelativeLayout>
 

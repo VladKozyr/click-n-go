@@ -1,6 +1,7 @@
 package com.clickandgo.ui.navigation;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,8 +21,6 @@ import com.clickandgo.model.Option;
 import java.util.ArrayList;
 import java.util.List;
 
-
-//TODO save selected state
 public class ChooseFragment extends Fragment {
 
     @IdRes
@@ -93,5 +92,26 @@ public class ChooseFragment extends Fragment {
             bindingList.add(binding);
         }
         return bindingList;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        if (savedInstanceState != null) {
+            Log.d("MENU_ITEM", String.valueOf(savedInstanceState.get("SELECTED_MENU_ITEM")));
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.d("SAVE", "INSTANCE");
+        outState.putInt("SELECTED_MENU_ITEM", 1);
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
     }
 }
