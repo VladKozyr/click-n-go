@@ -116,7 +116,7 @@ public class SearchActivity extends AppCompatActivity implements ViewSwitcher.Vi
             setupTransition(R.id.result, R.id.action_choosePlaceFragment_to_chooseResultFragment, "Go!");
         });
 
-        findViewById(R.id.back_button).setOnClickListener(v -> {
+        mBackButton.setOnClickListener(v -> {
             setupTransition(R.id.place_expanded, R.id.choosePlaceFragment, "Where?");
             mActionButton.setOnClickListener(v1 -> {
                 setupTransition(R.id.result, R.id.action_choosePlaceFragment_to_chooseResultFragment, "Go!");

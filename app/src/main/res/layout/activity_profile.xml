@@ -23,7 +23,7 @@
             app:expandedTitleMarginTop="20dp"
             app:expandedTitleTextAppearance="@style/ProfileTextStyle"
             app:layout_scrollFlags="scroll|snap"
-            app:title="Name">
+            app:title="">
 
 
             <ImageView

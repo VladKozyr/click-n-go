@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.clickandgo.SearchActivity;
+import com.clickandgo.model.User;
 import com.clickandgo.ui.NavigationHost;
 import com.clickandgo.R;
 import com.clickandgo.ui.TempFragmentUserAuthed;
@@ -59,6 +60,7 @@ public class SignUpFragment extends Fragment {
                 .addOnCompleteListener(getActivity(), task -> {
                     if (task.isSuccessful()) {
                         startActivity(new Intent(getContext(), SearchActivity.class)); // Navigate to the next Fragment
+                        User.addUserInfoToFireStore(nameEditText.getText().toString(), passwordEditText.getText().toString());
                     } else {
                         if (!task.isSuccessful()) handleFirebaseException(task.getException());
                     }
