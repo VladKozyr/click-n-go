@@ -179,4 +179,9 @@ Curabitur a nisl ut eros suscipit egestas. Vestibulum ultricies tempor dolor eu 
 Nunc vestibulum lorem at lorem ultrices interdum consequat in justo. Ut laoreet pellentesque pulvinar. Nulla facilisi. Quisque eu metus sed sem mattis lobortis dictum id neque. Donec sed arcu sit amet mauris convallis ullamcorper. Nam quis finibus magna. Suspendisse potenti. Vestibulum at tortor est. Donec sed pellentesque lacus. Nunc mattis eu augue ut pretium. Donec ullamcorper orci tempor, congue metus at, feugiat nibh. Nam efficitur ante sed enim aliquet rutrum.</string>
     <string name="clickngo_gmail_com">clickngo@gmail.com</string>
     <string name="change_email">change email</string>
+    <string name="welcome">Вітання!</string>
+    <string name="welcomeText">Ми невелика команда розробників, що створила цей додаток. Зараз ми знаходимося в режимі beta-test, і будемо дуже раді, якщо ти нам скажеш про помилки в роботі програми або підтримаєш нас копієчкою! :)
+</string>
+    <string name="design_sakh_agency">design: @sakh.agency</string>
+    <string name="report_about_errors">Повідомити про помилки</string>
 </resources>
