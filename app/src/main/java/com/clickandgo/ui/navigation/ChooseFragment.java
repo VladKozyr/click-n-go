@@ -39,6 +39,7 @@ public class ChooseFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        Log.d("ONCREATE", "FRAGMENT");
     }
 
     @Override

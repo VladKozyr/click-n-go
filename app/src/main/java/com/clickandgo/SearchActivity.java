@@ -20,11 +20,14 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.AnticipateInterpolator;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
+import androidx.annotation.IdRes;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.databinding.DataBindingUtil;
@@ -33,15 +36,21 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class SearchActivity extends AppCompatActivity implements ViewSwitcher.ViewFactory {
 
-    private BottomNavigationView mBottomNavigationView;
+    private static final int RESULT_PHOTO_UPDATED = 3;
+
     private NavHostFragment navHostFragment;
     private TextSwitcher mTextSwitcher;
     private Button mActionButton;
     private Button mBackButton;
+    private ImageView profileIcon;
+    private MotionLayout motionLayout;
 
 
     @Override
@@ -56,72 +65,82 @@ public class SearchActivity extends AppCompatActivity implements ViewSwitcher.Vi
 
         mActionButton = findViewById(R.id.action_button);
         mBackButton = findViewById(R.id.back_button);
+        profileIcon = findViewById(R.id.profile_icon);
 
         mTextSwitcher = findViewById(R.id.text_switcher);
         mTextSwitcher.setFactory(this);
         setUpQuestionNavigation();
+
+        setupProfileIcon();
+    }
+
+    private void setupProfileIcon() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        if (user != null) {
+            if (user.getPhotoUrl() != null) {
+                Glide.with(this)
+                        .load(user.getPhotoUrl())
+                        .circleCrop()
+                        .into(profileIcon);
+            }
+        }
     }
 
     private void setUpQuestionNavigation() {
-//        mBottomNavigationView = findViewById(R.id.question_navigation_view);
+
         navHostFragment = (NavHostFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.question_fragment_view);
 
-        navHostFragment.getNavController().addOnDestinationChangedListener((controller, destination, arguments) -> {
+        motionLayout = findViewById(R.id.question_navigation_view);
 
-//            MenuItem menuItem = mBottomNavigationView.getMenu().findItem(destination.getId());
-//            CharSequence title = menuItem.getTitle();
-//            mTextSwitcher.setText(title);
-        });
-//
-//        NavigationUI.setupWithNavController(mBottomNavigationView, navHostFragment.getNavController());
+        setupTransition(R.id.type_expanded, R.id.chooseTypeFragment, "What?");
 
-        MotionLayout motionLayout = findViewById(R.id.question_navigation_view);
         findViewById(R.id.type_icon).setOnClickListener(v -> {
-            motionLayout.setTransition(motionLayout.getCurrentState(), R.id.type_expanded);
-            motionLayout.transitionToEnd();
-            navHostFragment.getNavController().navigate(R.id.chooseTypeFragment);
+            setupTransition(R.id.type_expanded, R.id.chooseTypeFragment, "What?");
         });
 
         findViewById(R.id.party_icon).setOnClickListener(v -> {
-            motionLayout.setTransition(motionLayout.getCurrentState(), R.id.party_expanded);
-            motionLayout.transitionToEnd();
-            navHostFragment.getNavController().navigate(R.id.chooseGroupFragment);
+            setupTransition(R.id.party_expanded, R.id.chooseGroupFragment, "How many?");
         });
 
         findViewById(R.id.money_icon).setOnClickListener(v -> {
-            motionLayout.setTransition(motionLayout.getCurrentState(), R.id.money_expanded);
-            motionLayout.transitionToEnd();
-            navHostFragment.getNavController().navigate(R.id.chooseMoneyFragment);
+            setupTransition(R.id.money_expanded, R.id.chooseMoneyFragment, "How much?");
         });
 
         findViewById(R.id.place_icon).setOnClickListener(v -> {
-            motionLayout.setTransition(motionLayout.getCurrentState(), R.id.place_expanded);
-            motionLayout.transitionToEnd();
-            navHostFragment.getNavController().navigate(R.id.choosePlaceFragment);
+            setupTransition(R.id.place_expanded, R.id.choosePlaceFragment, "Where?");
         });
 
-        findViewById(R.id.action_button).setOnClickListener(v -> {
-            motionLayout.setTransition(motionLayout.getCurrentState(), R.id.result);
-            motionLayout.transitionToEnd();
-            navHostFragment.getNavController().navigate(R.id.action_choosePlaceFragment_to_chooseResultFragment);
+        mActionButton.setOnClickListener(v -> {
+            setupTransition(R.id.result, R.id.action_choosePlaceFragment_to_chooseResultFragment, "Go!");
         });
 
         findViewById(R.id.back_button).setOnClickListener(v -> {
-            motionLayout.setTransition(motionLayout.getCurrentState(), R.id.place_expanded);
-            motionLayout.transitionToEnd();
-            NavController navController = navHostFragment.getNavController();
-            findViewById(R.id.action_button).setOnClickListener(v1 -> {
-                motionLayout.setTransition(motionLayout.getCurrentState(), R.id.result);
-                motionLayout.transitionToEnd();
-                navHostFragment.getNavController().navigate(R.id.action_choosePlaceFragment_to_chooseResultFragment);
+            setupTransition(R.id.place_expanded, R.id.choosePlaceFragment, "Where?");
+            mActionButton.setOnClickListener(v1 -> {
+                setupTransition(R.id.result, R.id.action_choosePlaceFragment_to_chooseResultFragment, "Go!");
             });
-            navController.navigate(navController.getPreviousBackStackEntry().getDestination().getId());
         });
     }
 
+    private void setupTransition(@IdRes int anim, @IdRes int fragment, String title) {
+        motionLayout.setTransition(motionLayout.getCurrentState(), anim);
+        motionLayout.transitionToEnd();
+        navHostFragment.getNavController().navigate(fragment);
+        mTextSwitcher.setText(title);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RESULT_PHOTO_UPDATED && resultCode == RESULT_OK) {
+            setupProfileIcon();
+        }
+    }
+
     public void onProfileIconClick(View view) {
-        startActivity(new Intent(this, ProfileActivity.class));
+        startActivityForResult(new Intent(this, ProfileActivity.class), RESULT_PHOTO_UPDATED);
     }
 
     @Override

@@ -23,7 +23,7 @@
             app:expandedTitleMarginTop="20dp"
             app:expandedTitleTextAppearance="@style/ProfileTextStyle"
             app:layout_scrollFlags="scroll|snap"
-            app:title="Artem Sakh">
+            app:title="Name">
 
 
             <ImageView
@@ -32,13 +32,14 @@
                 android:layout_height="19dp"
                 android:layout_marginStart="26dp"
                 android:layout_marginTop="30dp"
-                android:translationZ="0.5dp"
-                android:background="@drawable/ic_arrow" />
+                android:background="@drawable/ic_arrow"
+                android:onClick="onBackArrowClick"
+                android:translationZ="0.5dp" />
 
             <ImageView
                 android:id="@+id/imageViewUserPhoto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="100dp"
                 android:src="@drawable/ic_big_profile_icon" />
@@ -67,7 +68,7 @@
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="47dp"
+                android:layout_height="70dp"
                 android:gravity="top"
                 app:layout_collapseMode="pin"
                 app:titleMarginTop="0dp" />
