@@ -5,6 +5,29 @@
         <item name="android:maxLines">1</item>
     </style>
 
+    <style name="ProfileTextStyle" parent="TextAppearance.AppCompat" >
+        <item name="android:textSize">32sp</item>
+        <item name="fontFamily">@font/sf_bold</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="ProfileCollapsedTextStyle" parent="TextAppearance.AppCompat" >
+        <item name="android:textSize">0sp</item>
+        <item name="android:textColor">@android:color/transparent</item>
+    </style>
+
+    <style name="ProfileTabTextStyle" parent="android:TextAppearance.Widget.TabWidget" >
+        <item name="fontFamily">@font/sf_medium</item>
+        <item name="android:textColor">#EBEBF5</item>
+        <item name="android:textSize">17sp</item>
+    </style>
+
+    <style name="ClickNGoNoActionBar" parent="Theme.MaterialComponents.Light.NoActionBar" >
+        <item name="android:statusBarColor">@color/black</item>
+    </style>
+
+
+
     <style name="TextInputLayoutClickNGo" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
         <item name="android:maxLines">1</item>
         <item name="boxBackgroundColor">@color/black</item>
@@ -30,6 +53,7 @@
 
     <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/splash</item>
+        <item name="android:statusBarColor">@color/black</item>
     </style>
 
     <style name="Option">
