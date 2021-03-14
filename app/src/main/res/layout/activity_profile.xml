@@ -19,7 +19,7 @@
             app:collapsedTitleGravity="start"
             app:collapsedTitleTextAppearance="@style/ProfileCollapsedTextStyle"
             app:expandedTitleGravity="top"
-            app:expandedTitleMarginStart="26dp"
+            app:expandedTitleMarginStart="66dp"
             app:expandedTitleMarginTop="20dp"
             app:expandedTitleTextAppearance="@style/ProfileTextStyle"
             app:layout_scrollFlags="scroll|snap"
@@ -30,17 +30,18 @@
                 android:id="@+id/arrow"
                 android:layout_width="25dp"
                 android:layout_height="19dp"
-                android:layout_marginStart="350dp"
+                android:layout_marginStart="26dp"
                 android:layout_marginTop="30dp"
                 android:translationZ="0.5dp"
                 android:background="@drawable/ic_arrow" />
 
             <ImageView
+                android:id="@+id/imageViewUserPhoto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="100dp"
-                android:background="@drawable/ic_big_profile_icon" />
+                android:src="@drawable/ic_big_profile_icon" />
 
             <View
                 android:id="@+id/divider"
@@ -57,29 +58,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="180dp"
-                android:layout_marginTop="110dp"
+                android:layout_marginTop="135dp"
                 android:fontFamily="@font/sf_regular"
                 android:text="@string/clickngo_gmail_com"
                 android:textColor="@color/selected"
                 android:textSize="15sp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/buttonChangeEmail"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="156dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="180dp"
-                android:layout_marginTop="150dp"
-                android:fontFamily="@font/sf_light"
-                android:text="@string/change_email"
-                android:textAllCaps="false"
-                android:textColor="#3BFEB8"
-                android:textSize="15sp"
-                app:cornerRadius="7dp"
-                app:strokeColor="#3BFEB8"
-                app:strokeWidth="0.5dp"
-
-                />
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
