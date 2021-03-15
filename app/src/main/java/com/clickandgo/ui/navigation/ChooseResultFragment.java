@@ -1,7 +1,9 @@
 package com.clickandgo.ui.navigation;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.location.Geocoder;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -98,32 +100,13 @@ public class ChooseResultFragment extends Fragment {
                         }
                         SearchResultBinding binding = SearchResultBinding.inflate(getLayoutInflater(), layout, false);
                         binding.setPlaceResult(new PlaceResult("Neproseco"));
+                        binding.getRoot().setOnClickListener(v -> {
+                            Uri address = Uri.parse("https://maps.google.com/?cid=10426385408524127842");
+                            Intent mapIntent = new Intent(Intent.ACTION_VIEW, address);
+                            mapIntent.setPackage("com.google.android.apps.maps");
+                            startActivity(mapIntent);
+                        });
                         layout.addView(binding.getRoot());
-                        //result.setText(sb.toString());
-
-//                        Places.initialize(getContext(), "AIzaSyCvpNm2MEj0xFbsazoKUBQNUyH4otmqca4");
-//                        PlacesClient placesClient = Places.createClient(getContext());
-//
-//                        // Define a Place ID.
-//                        final String placeId = "uVWTrx76Jj5okNGq6";
-//
-//// Specify the fields to return.
-//                        final List<Place.Field> placeFields = Arrays.asList(Place.Field.NAME);
-//
-//// Construct a request object, passing the place ID and fields array.
-//                        final FetchPlaceRequest request = FetchPlaceRequest.newInstance(placeId, placeFields);
-//
-//                        placesClient.fetchPlace(request).addOnSuccessListener((response) -> {
-//                            Place place = response.getPlace();
-//                            Log.i(TAG, "Place found: " + place.getName());
-//                        }).addOnFailureListener((exception) -> {
-//                            if (exception instanceof ApiException) {
-//                                final ApiException apiException = (ApiException) exception;
-//                                Log.e(TAG, "Place not found: " + exception.getMessage());
-//                                final int statusCode = apiException.getStatusCode();
-//                                // TODO: Handle error with given status code.
-//                            }
-//                        });
                     }
                 });
         Geocoder geocoder = new Geocoder(getContext());

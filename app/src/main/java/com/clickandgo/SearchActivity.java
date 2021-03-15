@@ -94,7 +94,10 @@ public class SearchActivity extends AppCompatActivity implements ViewSwitcher.Vi
 
         motionLayout = findViewById(R.id.question_navigation_view);
 
-        setupTransition(R.id.type_expanded, R.id.chooseTypeFragment, "What?");
+
+        //TODO fix bug
+        if(motionLayout.getCurrentState() == R.id.base)
+            setupTransition(R.id.type_expanded, R.id.chooseTypeFragment, "What?");
 
         findViewById(R.id.type_icon).setOnClickListener(v -> {
             setupTransition(R.id.type_expanded, R.id.chooseTypeFragment, "What?");

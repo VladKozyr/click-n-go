@@ -100,11 +100,7 @@ public class ChoosePlaceFragment extends Fragment implements OnMapReadyCallback,
             Log.e(TAG, "Style parsing failed.");
         }
 
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions()
-                .position(sydney)
-                .title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(50.45466, 30.5238), DEFAULT_ZOOM));
     }
 
     private void moveCamera(LatLng latLng, float zoom, String title) {
