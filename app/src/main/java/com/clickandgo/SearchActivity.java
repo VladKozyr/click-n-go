@@ -33,6 +33,7 @@ import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.databinding.DataBindingUtil;
 import androidx.interpolator.view.animation.FastOutLinearInInterpolator;
 import androidx.navigation.NavController;
+import androidx.navigation.NavOptions;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
@@ -51,6 +52,7 @@ public class SearchActivity extends AppCompatActivity implements ViewSwitcher.Vi
     private Button mBackButton;
     private ImageView profileIcon;
     private MotionLayout motionLayout;
+    private NavOptions navOptions;
 
 
     @Override
@@ -69,9 +71,19 @@ public class SearchActivity extends AppCompatActivity implements ViewSwitcher.Vi
 
         mTextSwitcher = findViewById(R.id.text_switcher);
         mTextSwitcher.setFactory(this);
-        setUpQuestionNavigation();
 
+        setupNavOptions();
+        setUpQuestionNavigation();
         setupProfileIcon();
+    }
+
+    private void setupNavOptions() {
+        navOptions = new NavOptions.Builder()
+                .setEnterAnim(R.anim.slide_in_left)
+                .setExitAnim(R.anim.slide_out_right)
+                .setPopEnterAnim(R.anim.slide_in_right)
+                .setPopExitAnim(R.anim.slide_out_left)
+                .build();
     }
 
     private void setupProfileIcon() {
@@ -96,7 +108,7 @@ public class SearchActivity extends AppCompatActivity implements ViewSwitcher.Vi
 
 
         //TODO fix bug
-        if(motionLayout.getCurrentState() == R.id.base)
+        if (motionLayout.getCurrentState() == R.id.base)
             setupTransition(R.id.type_expanded, R.id.chooseTypeFragment, "What?");
 
         findViewById(R.id.type_icon).setOnClickListener(v -> {
@@ -130,7 +142,7 @@ public class SearchActivity extends AppCompatActivity implements ViewSwitcher.Vi
     private void setupTransition(@IdRes int anim, @IdRes int fragment, String title) {
         motionLayout.setTransition(motionLayout.getCurrentState(), anim);
         motionLayout.transitionToEnd();
-        navHostFragment.getNavController().navigate(fragment);
+        navHostFragment.getNavController().navigate(fragment, null, navOptions);
         mTextSwitcher.setText(title);
     }
 
