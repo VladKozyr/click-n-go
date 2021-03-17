@@ -34,7 +34,6 @@ public abstract class PlaceListFragment extends Fragment implements FavoritesTog
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         viewModel = ViewModelProviders.of(this).get(viewModelClass);
-        viewModel.init();
     }
 
     @Override

@@ -12,6 +12,8 @@ import androidx.databinding.library.baseAdapters.BR;
 import com.bumptech.glide.Glide;
 import com.google.firebase.firestore.DocumentReference;
 
+import java.util.Objects;
+
 public class PlaceResult extends BaseObservable {
 
     private String name;
@@ -96,5 +98,18 @@ public class PlaceResult extends BaseObservable {
         Glide.with(view.getContext())
                 .load(imageUri)
                 .into(view);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PlaceResult result = (PlaceResult) o;
+        return Objects.equals(reference, result.reference);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(reference);
     }
 }
