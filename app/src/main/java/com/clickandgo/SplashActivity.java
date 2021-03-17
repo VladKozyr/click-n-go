@@ -1,12 +1,10 @@
-package com.clickandgo.ui;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.clickandgo;
 
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.clickandgo.AuthActivity;
-import com.clickandgo.SearchActivity;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
 
 public class SplashActivity extends AppCompatActivity {

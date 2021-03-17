@@ -5,8 +5,6 @@ import android.view.MenuItem;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
-import androidx.databinding.Observable;
-import androidx.databinding.ObservableField;
 import androidx.databinding.library.baseAdapters.BR;
 
 public class Option extends BaseObservable {

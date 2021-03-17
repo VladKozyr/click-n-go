@@ -3,7 +3,6 @@ package com.clickandgo;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,16 +14,14 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
-import com.clickandgo.model.User;
+import com.clickandgo.repo.UserRepository;
 import com.clickandgo.ui.profile.ProfileFragmentAdapter;
 import com.github.dhaval2404.imagepicker.ImagePicker;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -72,9 +69,12 @@ public class ProfileActivity extends AppCompatActivity {
                         .into(userPhoto);
             }
 
-            User.getUserDocument().get().addOnSuccessListener(documentSnapshot -> {
-                toolbarLayout.setTitle(documentSnapshot.getString(User.NAME));
-            });
+            UserRepository.getInstance()
+                    .getUserDocument()
+                    .get()
+                    .addOnSuccessListener(documentSnapshot -> {
+                        toolbarLayout.setTitle(documentSnapshot.getString(UserRepository.NAME));
+                    });
 
             textViewEmail.setText(user.getEmail());
         }

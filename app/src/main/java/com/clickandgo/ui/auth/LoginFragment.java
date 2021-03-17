@@ -11,10 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.clickandgo.SearchActivity;
-import com.clickandgo.ui.NavigationHost;
 import com.clickandgo.R;
-import com.clickandgo.ui.TempFragmentUserAuthed;
+import com.clickandgo.SearchActivity;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
@@ -44,7 +42,7 @@ public class LoginFragment extends Fragment {
             String email = emailEditText.getText().toString();
             String password = passwordEditText.getText().toString();
             if (isAnyFieldEmpty(email, password)) return;
-            signIn(email,password);
+            signIn(email, password);
         });
     }
 
@@ -75,7 +73,7 @@ public class LoginFragment extends Fragment {
     }
 
     private void handleFirebaseException(Exception taskException) {
-        try{
+        try {
             throw taskException;
         } catch (FirebaseAuthInvalidCredentialsException e) {
             emailEditText.setError(getString(R.string.incorrect_email_or_password));

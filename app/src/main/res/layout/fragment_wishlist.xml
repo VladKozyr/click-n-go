@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/refresh_wish_list"
+    android:id="@+id/refresh_places_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#1A1C1B"
@@ -8,7 +8,7 @@
     android:paddingHorizontal="20dp">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/wish_list"
+        android:id="@+id/places_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

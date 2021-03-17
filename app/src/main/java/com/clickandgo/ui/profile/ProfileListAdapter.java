@@ -1,7 +1,6 @@
 package com.clickandgo.ui.profile;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,10 +19,10 @@ public class ProfileListAdapter extends RecyclerView.Adapter<ProfileListAdapter.
     private final LayoutInflater inflater;
     private final Context mContext;
 
-    public ProfileListAdapter(Context context, List<PlaceResult> mCardList) {
+    public ProfileListAdapter(Context context, List<PlaceResult> mPlaceList) {
         inflater = LayoutInflater.from(context);
         mContext = context;
-        this.mPlaceList = mCardList;
+        this.mPlaceList = mPlaceList;
     }
 
     @NonNull
@@ -42,6 +41,12 @@ public class ProfileListAdapter extends RecyclerView.Adapter<ProfileListAdapter.
     @Override
     public int getItemCount() {
         return mPlaceList.size();
+    }
+
+    public PlaceResult getItemAt(int position) {
+        if (position < 0 || position >= mPlaceList.size()) return null;
+
+        return mPlaceList.get(position);
     }
 
     public void clear() {

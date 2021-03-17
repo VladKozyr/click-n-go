@@ -1,9 +1,6 @@
 package com.clickandgo.ui.navigation;
 
-import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.location.Geocoder;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,19 +16,8 @@ import androidx.fragment.app.Fragment;
 
 import com.clickandgo.R;
 import com.clickandgo.databinding.SearchResultBinding;
-import com.clickandgo.model.PlaceResult;
-import com.google.android.gms.common.api.ApiException;
-import com.google.android.libraries.places.api.Places;
-import com.google.android.libraries.places.api.model.Place;
-import com.google.android.libraries.places.api.net.FetchPlaceRequest;
-import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.net.URL;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -85,6 +71,7 @@ public class ChooseResultFragment extends Fragment {
     public void onFindClick(View view) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+        //TODO repo call
         db.collection(PLACES)
                 .document("Кловська")
                 .collection("100")
@@ -99,13 +86,13 @@ public class ChooseResultFragment extends Fragment {
                                     .append(System.lineSeparator());
                         }
                         SearchResultBinding binding = SearchResultBinding.inflate(getLayoutInflater(), layout, false);
-                        binding.setPlaceResult(new PlaceResult("Neproseco"));
-                        binding.getRoot().setOnClickListener(v -> {
-                            Uri address = Uri.parse("https://maps.google.com/?cid=10426385408524127842");
-                            Intent mapIntent = new Intent(Intent.ACTION_VIEW, address);
-                            mapIntent.setPackage("com.google.android.apps.maps");
-                            startActivity(mapIntent);
-                        });
+//                        binding.setPlaceResult(new PlaceResult("Neproseco"));
+//                        binding.getRoot().setOnClickListener(v -> {
+//                            Uri address = Uri.parse("https://maps.google.com/?cid=10426385408524127842");
+//                            Intent mapIntent = new Intent(Intent.ACTION_VIEW, address);
+//                            mapIntent.setPackage("com.google.android.apps.maps");
+//                            startActivity(mapIntent);
+//                        });
                         layout.addView(binding.getRoot());
                     }
                 });

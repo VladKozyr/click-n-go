@@ -12,10 +12,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.clickandgo.SearchActivity;
-import com.clickandgo.model.User;
-import com.clickandgo.ui.NavigationHost;
+import com.clickandgo.repo.UserRepository;
 import com.clickandgo.R;
-import com.clickandgo.ui.TempFragmentUserAuthed;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
@@ -60,7 +58,7 @@ public class SignUpFragment extends Fragment {
                 .addOnCompleteListener(getActivity(), task -> {
                     if (task.isSuccessful()) {
                         startActivity(new Intent(getContext(), SearchActivity.class)); // Navigate to the next Fragment
-                        User.addUserInfoToFireStore(nameEditText.getText().toString(), passwordEditText.getText().toString());
+                        UserRepository.getInstance().addUserInfo(nameEditText.getText().toString(), passwordEditText.getText().toString());
                     } else {
                         if (!task.isSuccessful()) handleFirebaseException(task.getException());
                     }
