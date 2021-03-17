@@ -1,6 +1,5 @@
 package com.clickandgo.ui.profile;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,24 +10,23 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.clickandgo.databinding.SearchResultBinding;
 import com.clickandgo.model.PlaceResult;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class ProfileListAdapter extends RecyclerView.Adapter<ProfileListAdapter.ProfileListItemViewHolder> {
+public class ProfileListAdapter extends RecyclerView.Adapter<ProfileListAdapter.ProfileListItemViewHolder> implements FavoritesToggleListener {
 
-    private final List<PlaceResult> mPlaceList;
-    private final LayoutInflater inflater;
-    private final Context mContext;
+    private final List<PlaceResult> mPlaceList = new ArrayList<>();
+    private final FavoritesToggleListener listener;
 
-    public ProfileListAdapter(Context context, List<PlaceResult> mPlaceList) {
-        inflater = LayoutInflater.from(context);
-        mContext = context;
-        this.mPlaceList = mPlaceList;
+    public ProfileListAdapter(FavoritesToggleListener listener) {
+        this.listener = listener;
     }
 
     @NonNull
     @Override
     public ProfileListItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        SearchResultBinding binding = SearchResultBinding.inflate(inflater, parent, false);
+        SearchResultBinding binding = SearchResultBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        binding.setPresenter(this);
         return new ProfileListItemViewHolder(binding.getRoot(), binding);
     }
 
@@ -49,13 +47,14 @@ public class ProfileListAdapter extends RecyclerView.Adapter<ProfileListAdapter.
         return mPlaceList.get(position);
     }
 
-    public void clear() {
-        mPlaceList.clear();
-        notifyDataSetChanged();
+    @Override
+    public void onClicked(PlaceResult result) {
+        listener.onClicked(result);
     }
 
-    public void addAll(List<PlaceResult> list) {
-        mPlaceList.addAll(list);
+    public void update(List<PlaceResult> newList) {
+        mPlaceList.clear();
+        mPlaceList.addAll(newList);
         notifyDataSetChanged();
     }
 

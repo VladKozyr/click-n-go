@@ -26,11 +26,12 @@ public class UserRepository {
 
     private static UserRepository instance;
 
-    private static LinkedList<DocumentReference> favourites;
-    private static LinkedList<DocumentReference> history;
+    private final LinkedList<DocumentReference> favourites = new LinkedList<>();
+    private final LinkedList<DocumentReference> history = new LinkedList<>();
+    private final MutableLiveData<List<DocumentReference>> docFavoritesLiveData = new MutableLiveData<>();
+    private final MutableLiveData<List<DocumentReference>> docHistoryLiveData = new MutableLiveData<>();
 
-    private static boolean isUpdated = false;
-
+    private boolean isUpdated = false;
 
     public static synchronized UserRepository getInstance() {
         if (instance == null) {
@@ -41,8 +42,7 @@ public class UserRepository {
 
     public DocumentReference getUserDocument(String email) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        return db.collection(USER_COLLECTION)
-                .document(email);
+        return db.collection(USER_COLLECTION).document(email);
     }
 
     public void addUserInfo(String name, String password) {
@@ -65,36 +65,32 @@ public class UserRepository {
     }
 
     public MutableLiveData<List<DocumentReference>> getFavourites() {
-        MutableLiveData<List<DocumentReference>> placesList = new MutableLiveData<>();
-        if (favourites != null) {
-            placesList.setValue(favourites);
+        if (!favourites.isEmpty()) {
+            docFavoritesLiveData.setValue(favourites);
+            // update firebase
             if (isUpdated) updateFavourites();
-            return placesList;
+            return docFavoritesLiveData;
         }
-
-        favourites = new LinkedList<>();
-
         getUserDocument().get().addOnSuccessListener(documentSnapshot -> {
+            favourites.clear();
             favourites.addAll((Collection<? extends DocumentReference>) documentSnapshot.get(FAVOURITES));
-            placesList.setValue(favourites);
+            docFavoritesLiveData.setValue(favourites);
         });
-        return placesList;
+        return docFavoritesLiveData;
     }
 
     public MutableLiveData<List<DocumentReference>> getHistory() {
-        MutableLiveData<List<DocumentReference>> placesList = new MutableLiveData<>();
-        if (history != null) {
-            placesList.setValue(history);
-            return placesList;
+        if (!history.isEmpty()) {
+            docHistoryLiveData.setValue(history);
+            return docHistoryLiveData;
         }
 
-        history = new LinkedList<>();
-
         getUserDocument().get().addOnSuccessListener(documentSnapshot -> {
+            history.clear();
             history.addAll((Collection<? extends DocumentReference>) documentSnapshot.get(HISTORY));
-            placesList.setValue(history);
+            docHistoryLiveData.setValue(history);
         });
-        return placesList;
+        return docHistoryLiveData;
     }
 
     public List<DocumentReference> getCachedFavourites() {
@@ -110,14 +106,24 @@ public class UserRepository {
         getUserDocument().update(HISTORY, history);
     }
 
+    public void updateHistoryLocal() {
+        docHistoryLiveData.postValue(history);
+    }
+
+    public void updateFavoritesLocal() {
+        docFavoritesLiveData.postValue(favourites);
+    }
+
     public void addFavourite(DocumentReference placeReference) {
         favourites.addFirst(placeReference);
         isUpdated = true;
+        docFavoritesLiveData.postValue(favourites);
     }
 
     public void removeFavourite(DocumentReference placeReference) {
         favourites.remove(placeReference);
         isUpdated = true;
+        docFavoritesLiveData.postValue(favourites);
     }
 
     public void pushToHistory(DocumentReference documentReference) {

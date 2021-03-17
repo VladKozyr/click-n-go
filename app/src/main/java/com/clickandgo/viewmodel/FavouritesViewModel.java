@@ -13,14 +13,19 @@ import java.util.List;
 
 public class FavouritesViewModel extends PlaceResultsViewModel {
 
+    private final MutableLiveData<List<DocumentReference>> placesReferences = super.repository.getFavourites();
+
     @Override
     public void updatePlaceResults() {
-        MutableLiveData<List<DocumentReference>> placesReferences = userRepository.getFavourites();
-        placeResults.clear();
+        super.repository.updateFavoritesLocal();
+    }
 
+    @Override
+    public void init() {
+        super.init();
         placesReferences.observeForever(favourites -> {
+            placeResults.clear();
             for (DocumentReference reference : favourites) {
-
                 String[] fields = reference.getPath().split("/");
                 PlaceResult placeResult = new PlaceResult(fields[3], fields[1], fields[2], reference, true);
 
@@ -41,6 +46,5 @@ public class FavouritesViewModel extends PlaceResultsViewModel {
             }
             placesLiveData.setValue(placeResults);
         });
-
     }
 }

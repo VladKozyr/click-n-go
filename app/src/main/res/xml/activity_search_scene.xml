@@ -15,9 +15,9 @@
             <CustomAttribute
                 app:attributeName="crossfade"
                 app:customFloatValue="0" />
-            <CustomAttribute
-                app:attributeName="padding"
-                app:customDimension="8dp" />
+<!--            <CustomAttribute-->
+<!--                app:attributeName="padding"-->
+<!--                app:customDimension="8dp" />-->
         </Constraint>
         <Constraint
             android:id="@+id/party_icon"
@@ -31,9 +31,9 @@
             <CustomAttribute
                 app:attributeName="crossfade"
                 app:customFloatValue="0" />
-            <CustomAttribute
-                app:attributeName="padding"
-                app:customDimension="8dp" />
+<!--            <CustomAttribute-->
+<!--                app:attributeName="padding"-->
+<!--                app:customDimension="8dp" />-->
         </Constraint>
         <Constraint
             android:id="@+id/money_icon"
@@ -47,9 +47,9 @@
             <CustomAttribute
                 app:attributeName="crossfade"
                 app:customFloatValue="0" />
-            <CustomAttribute
-                app:attributeName="padding"
-                app:customDimension="8dp" />
+<!--            <CustomAttribute-->
+<!--                app:attributeName="padding"-->
+<!--                app:customDimension="8dp" />-->
         </Constraint>
         <Constraint
             android:id="@+id/place_icon"
@@ -63,9 +63,9 @@
             <CustomAttribute
                 app:attributeName="crossfade"
                 app:customFloatValue="0" />
-            <CustomAttribute
-                app:attributeName="padding"
-                app:customDimension="8dp" />
+<!--            <CustomAttribute-->
+<!--                app:attributeName="padding"-->
+<!--                app:customDimension="8dp" />-->
         </Constraint>
         <Constraint
             android:id="@+id/action_button"
@@ -101,9 +101,9 @@
             <CustomAttribute
                 app:attributeName="crossfade"
                 app:customFloatValue="1" />
-            <CustomAttribute
-                app:attributeName="padding"
-                app:customDimension="20dp" />
+<!--            <CustomAttribute-->
+<!--                app:attributeName="padding"-->
+<!--                app:customDimension="20dp" />-->
         </Constraint>
         <Constraint
             android:id="@+id/type_bg"
@@ -132,9 +132,9 @@
             <CustomAttribute
                 app:attributeName="crossfade"
                 app:customFloatValue="1" />
-            <CustomAttribute
-                app:attributeName="padding"
-                app:customDimension="20dp" />
+<!--            <CustomAttribute-->
+<!--                app:attributeName="padding"-->
+<!--                app:customDimension="20dp" />-->
         </Constraint>
         <Constraint
             android:id="@+id/party_bg"
@@ -163,9 +163,9 @@
             <CustomAttribute
                 app:attributeName="crossfade"
                 app:customFloatValue="1" />
-            <CustomAttribute
-                app:attributeName="padding"
-                app:customDimension="20dp" />
+<!--            <CustomAttribute-->
+<!--                app:attributeName="padding"-->
+<!--                app:customDimension="20dp" />-->
         </Constraint>
         <Constraint
             android:id="@+id/money_bg"
@@ -194,9 +194,9 @@
             <CustomAttribute
                 app:attributeName="crossfade"
                 app:customFloatValue="1" />
-            <CustomAttribute
-                app:attributeName="padding"
-                app:customDimension="0dp" />
+<!--            <CustomAttribute-->
+<!--                app:attributeName="padding"-->
+<!--                app:customDimension="0dp" />-->
         </Constraint>
         <Constraint
             android:id="@+id/place_bg"

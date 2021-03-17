@@ -13,13 +13,19 @@ import java.util.List;
 
 public class HistoryViewModel extends PlaceResultsViewModel {
 
+    private final MutableLiveData<List<DocumentReference>> placesReferences = super.repository.getHistory();
+
     @Override
     public void updatePlaceResults() {
-        MutableLiveData<List<DocumentReference>> placesReferences = userRepository.getHistory();
-        placeResults.clear();
+        super.repository.updateHistoryLocal();
+    }
 
+    @Override
+    public void init() {
+        super.init();
         placesReferences.observeForever(favourites -> {
-            List<DocumentReference> cachedFavourites = userRepository.getCachedFavourites();
+            placeResults.clear();
+            List<DocumentReference> cachedFavourites = repository.getCachedFavourites();
             for (DocumentReference reference : favourites) {
 
                 String[] fields = reference.getPath().split("/");

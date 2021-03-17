@@ -17,16 +17,12 @@ import com.clickandgo.model.PlaceResult;
 import com.clickandgo.utils.ItemClickSupport;
 import com.clickandgo.viewmodel.PlaceResultsViewModel;
 
-import java.util.LinkedList;
-
-public abstract class PlaceListFragment extends Fragment {
+public abstract class PlaceListFragment extends Fragment implements FavoritesToggleListener {
 
     private RecyclerView mWishRecyclerView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private ProfileListAdapter mAdapter;
     private PlaceResultsViewModel viewModel;
-
-    private LinkedList<PlaceResult> results;
 
     private Class<? extends PlaceResultsViewModel> viewModelClass;
 
@@ -34,31 +30,34 @@ public abstract class PlaceListFragment extends Fragment {
         this.viewModelClass = viewModelClass;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        viewModel = ViewModelProviders.of(this).get(viewModelClass);
+        viewModel.init();
+    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        results = new LinkedList<>();
-
         mWishRecyclerView = view.findViewById(R.id.places_list);
         mSwipeRefreshLayout = view.findViewById(R.id.refresh_places_list);
 
-        mAdapter = new ProfileListAdapter(getContext(), results);
+        mAdapter = new ProfileListAdapter(this);
         mWishRecyclerView.setAdapter(mAdapter);
         mWishRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-
-        viewModel = ViewModelProviders.of(this).get(viewModelClass);
-        viewModel.init();
-
         viewModel.getPlacesData().observe(getViewLifecycleOwner(), placeResults -> {
             if (placeResults == null) return;
-            mAdapter.clear();
-            mAdapter.addAll(placeResults);
-            mAdapter.notifyDataSetChanged();
+            mAdapter.update(placeResults);
         });
 
         setupItemClickListeners();
         setupRefreshListeners();
+    }
+
+    @Override
+    public void onClicked(PlaceResult result) {
+        viewModel.onWishlistToggle(result);
     }
 
     private void setupRefreshListeners() {
@@ -80,7 +79,7 @@ public abstract class PlaceListFragment extends Fragment {
             @Override
             public void onItemDoubleClicked(RecyclerView recyclerView, int position, View v) {
                 PlaceResult result = ((ProfileListAdapter) recyclerView.getAdapter()).getItemAt(position);
-                result.toggle();
+                viewModel.onWishlistToggle(result);
             }
         });
     }
