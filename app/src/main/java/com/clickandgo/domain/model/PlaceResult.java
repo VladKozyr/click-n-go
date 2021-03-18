@@ -1,4 +1,4 @@
-package com.clickandgo.model;
+package com.clickandgo.domain.model;
 
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -10,8 +10,9 @@ import androidx.databinding.BindingAdapter;
 import androidx.databinding.library.baseAdapters.BR;
 
 import com.bumptech.glide.Glide;
-import com.clickandgo.repo.UserRepository;
 import com.google.firebase.firestore.DocumentReference;
+
+import java.util.Objects;
 
 public class PlaceResult extends BaseObservable {
 
@@ -48,6 +49,10 @@ public class PlaceResult extends BaseObservable {
         return place;
     }
 
+    public DocumentReference getReference() {
+        return reference;
+    }
+
     public void setPlace(String place) {
         this.place = place;
     }
@@ -62,16 +67,6 @@ public class PlaceResult extends BaseObservable {
 
     public void setMap(String mapPath) {
         mapUri = Uri.parse(mapPath);
-    }
-
-    public void toggle() {
-        setLiked(!isLiked);
-        UserRepository repository = UserRepository.getInstance();
-        if (isLiked) {
-            repository.addFavourite(reference);
-        } else {
-            repository.removeFavourite(reference);
-        }
     }
 
     @Bindable
@@ -100,9 +95,21 @@ public class PlaceResult extends BaseObservable {
             view.setImageDrawable(placeholder);
             return;
         }
-
         Glide.with(view.getContext())
                 .load(imageUri)
                 .into(view);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PlaceResult result = (PlaceResult) o;
+        return Objects.equals(reference, result.reference);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(reference);
     }
 }

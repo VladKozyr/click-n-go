@@ -6,7 +6,12 @@
 
         <variable
             name="placeResult"
-            type="com.clickandgo.model.PlaceResult" />
+            type="com.clickandgo.domain.model.PlaceResult" />
+
+        <variable
+            name="presenter"
+            type="com.clickandgo.ui.profile.tab.PlacesListAdapter" />
+
     </data>
 
     <androidx.cardview.widget.CardView
@@ -89,7 +94,7 @@
                     android:background="@drawable/heart_checkbox"
                     android:button="@null"
                     android:checked="@{placeResult.liked}"
-                    android:onClick="@{() -> placeResult.toggle()}"
+                    android:onClick="@{() -> presenter.onClicked(placeResult)}"
                     android:stateListAnimator="@animator/heart_scale"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />

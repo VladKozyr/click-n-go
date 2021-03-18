@@ -1,13 +1,13 @@
 package com.clickandgo;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.inputmethod.InputMethodManager;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.clickandgo.ui.NavigationHost;
 
@@ -22,9 +22,6 @@ public class AuthActivity extends AppCompatActivity implements NavigationHost {
 
     /**
      * Hide keyboard when focus on a viewGroup
-     *
-     * @param ev
-     * @return
      */
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
@@ -38,20 +35,17 @@ public class AuthActivity extends AppCompatActivity implements NavigationHost {
     /**
      * Navigate to the given fragment.
      *
-     * @param fragment       Fragment to navigate to.
-     * @param addToBackstack Whether or not the current fragment should be added to the backstack.
+     * @param fragment       fragment to navigate to.
+     * @param addToBackStack Whether or not the current fragment should be added to the backstack.
      */
     @Override
-    public void navigateTo(Fragment fragment, boolean addToBackstack) {
-        FragmentTransaction transaction =
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.nav_host_fragment, fragment);
-
-        if (addToBackstack) {
+    public void navigateTo(Fragment fragment, boolean addToBackStack) {
+        FragmentTransaction transaction = getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.nav_host_fragment, fragment);
+        if (addToBackStack) {
             transaction.addToBackStack(null);
         }
-
         transaction.commit();
     }
 }

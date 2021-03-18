@@ -8,9 +8,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -26,11 +24,10 @@ public class UserRepository {
 
     private static UserRepository instance;
 
-    private static LinkedList<DocumentReference> favourites;
-    private static LinkedList<DocumentReference> history;
+    private final MutableLiveData<List<DocumentReference>> docFavoritesLiveData = new MutableLiveData<>();
+    private final MutableLiveData<List<DocumentReference>> docHistoryLiveData = new MutableLiveData<>();
 
-    private static boolean isUpdated = false;
-
+    private boolean isUpdated = false;
 
     public static synchronized UserRepository getInstance() {
         if (instance == null) {
@@ -41,8 +38,7 @@ public class UserRepository {
 
     public DocumentReference getUserDocument(String email) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        return db.collection(USER_COLLECTION)
-                .document(email);
+        return db.collection(USER_COLLECTION).document(email);
     }
 
     public void addUserInfo(String name, String password) {
@@ -64,60 +60,42 @@ public class UserRepository {
         return getUserDocument(user.getEmail());
     }
 
-    public MutableLiveData<List<DocumentReference>> getFavourites() {
-        MutableLiveData<List<DocumentReference>> placesList = new MutableLiveData<>();
-        if (favourites != null) {
-            placesList.setValue(favourites);
+    /*
+           if (!favourites.isEmpty()) {
+            docFavoritesLiveData.setValue(favourites);
+            // update firebase
             if (isUpdated) updateFavourites();
-            return placesList;
+            return docFavoritesLiveData;
         }
-
-        favourites = new LinkedList<>();
-
+     */
+    public MutableLiveData<List<DocumentReference>> getFavourites() {
         getUserDocument().get().addOnSuccessListener(documentSnapshot -> {
-            favourites.addAll((Collection<? extends DocumentReference>) documentSnapshot.get(FAVOURITES));
-            placesList.setValue(favourites);
+            docFavoritesLiveData.setValue((ArrayList<DocumentReference>) documentSnapshot.get(FAVOURITES));
         });
-        return placesList;
+        return docFavoritesLiveData;
     }
 
+    /*
+         if (!history.isEmpty()) {
+            docHistoryLiveData.setValue(history);
+            return docHistoryLiveData;
+        }
+     */
     public MutableLiveData<List<DocumentReference>> getHistory() {
-        MutableLiveData<List<DocumentReference>> placesList = new MutableLiveData<>();
-        if (history != null) {
-            placesList.setValue(history);
-            return placesList;
-        }
-
-        history = new LinkedList<>();
-
         getUserDocument().get().addOnSuccessListener(documentSnapshot -> {
-            history.addAll((Collection<? extends DocumentReference>) documentSnapshot.get(HISTORY));
-            placesList.setValue(history);
+            docHistoryLiveData.setValue((ArrayList<DocumentReference>) documentSnapshot.get(HISTORY));
         });
-        return placesList;
+        return docHistoryLiveData;
     }
 
-    public List<DocumentReference> getCachedFavourites() {
-        return favourites;
-    }
-
-    private synchronized void updateFavourites() {
-        getUserDocument().update(FAVOURITES, favourites);
+     public synchronized void updateFavourites(List<DocumentReference> list) {
+        getUserDocument().update(FAVOURITES, list);
         isUpdated = false;
     }
 
-    private synchronized void updateHistory() {
-        getUserDocument().update(HISTORY, history);
-    }
-
-    public void addFavourite(DocumentReference placeReference) {
-        favourites.addFirst(placeReference);
-        isUpdated = true;
-    }
-
-    public void removeFavourite(DocumentReference placeReference) {
-        favourites.remove(placeReference);
-        isUpdated = true;
+    public  synchronized void updateHistory(List<DocumentReference> list) {
+        getUserDocument().update(HISTORY, list);
+        isUpdated = false;
     }
 
     public void pushToHistory(DocumentReference documentReference) {
