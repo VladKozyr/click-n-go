@@ -9,8 +9,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.clickandgo.R;
-import com.clickandgo.ui.auth.LoginFragment;
-import com.clickandgo.ui.auth.SignUpFragment;
+import com.clickandgo.ui.profile.tab.favorites.FavoritesFragment;
+import com.clickandgo.ui.profile.tab.history.HistoryFragment;
+import com.clickandgo.ui.profile.tab.support.SupportUsFragment;
 
 
 public class ProfileFragmentAdapter extends FragmentPagerAdapter {
@@ -27,7 +28,7 @@ public class ProfileFragmentAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new WishListFragment();
+                return new FavoritesFragment();
             case 1:
                 return new HistoryFragment();
             case 2:

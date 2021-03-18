@@ -1,4 +1,4 @@
-package com.clickandgo.ui.profile;
+package com.clickandgo.ui.profile.tab.favorites;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -6,11 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.clickandgo.R;
-import com.clickandgo.viewmodel.FavouritesViewModel;
+import com.clickandgo.ui.profile.tab.PlacesListFragment;
 
-public class WishListFragment extends PlaceListFragment {
+public class FavoritesFragment extends PlacesListFragment {
 
-    public WishListFragment() {
+    public FavoritesFragment() {
         super(FavouritesViewModel.class);
     }
 

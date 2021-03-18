@@ -1,12 +1,13 @@
-package com.clickandgo.viewmodel;
+package com.clickandgo.ui.profile.tab.history;
 
 import androidx.lifecycle.LiveData;
 
-import com.clickandgo.model.PlaceResult;
+import com.clickandgo.domain.model.PlaceResult;
+import com.clickandgo.ui.profile.tab.PlacesResultsViewModel;
 
 import java.util.List;
 
-public class HistoryViewModel extends PlaceResultsViewModel {
+public class HistoryViewModel extends PlacesResultsViewModel {
 
     @Override
     public void updatePlaceResults() {

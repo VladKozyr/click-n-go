@@ -1,4 +1,4 @@
-package com.clickandgo.ui.profile;
+package com.clickandgo.ui.profile.tab;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,17 +8,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.clickandgo.databinding.SearchResultBinding;
-import com.clickandgo.model.PlaceResult;
+import com.clickandgo.domain.model.PlaceResult;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProfileListAdapter extends RecyclerView.Adapter<ProfileListAdapter.ProfileListItemViewHolder> implements FavoritesToggleListener {
+public class PlacesListAdapter extends RecyclerView.Adapter<PlacesListAdapter.ProfileListItemViewHolder> implements FavoritesToggleListener {
 
     private final List<PlaceResult> mPlaceList = new ArrayList<>();
     private final FavoritesToggleListener listener;
 
-    public ProfileListAdapter(FavoritesToggleListener listener) {
+    public PlacesListAdapter(FavoritesToggleListener listener) {
         this.listener = listener;
     }
 

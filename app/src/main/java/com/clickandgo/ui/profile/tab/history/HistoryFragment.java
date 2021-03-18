@@ -1,19 +1,14 @@
-package com.clickandgo.ui.profile;
+package com.clickandgo.ui.profile.tab.history;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import com.clickandgo.R;
-import com.clickandgo.viewmodel.HistoryViewModel;
-import com.clickandgo.viewmodel.PlaceResultsViewModel;
+import com.clickandgo.ui.profile.tab.PlacesListFragment;
 
-public class HistoryFragment extends PlaceListFragment {
+public class HistoryFragment extends PlacesListFragment {
 
     public HistoryFragment() {
         super(HistoryViewModel.class);

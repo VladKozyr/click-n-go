@@ -1,4 +1,4 @@
-package com.clickandgo.model;
+package com.clickandgo.domain.model;
 
 import android.graphics.drawable.Drawable;
 import android.net.Uri;

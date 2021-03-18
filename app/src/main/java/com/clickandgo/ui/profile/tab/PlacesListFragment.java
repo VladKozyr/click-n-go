@@ -1,4 +1,4 @@
-package com.clickandgo.ui.profile;
+package com.clickandgo.ui.profile.tab;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,20 +13,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.clickandgo.R;
-import com.clickandgo.model.PlaceResult;
+import com.clickandgo.domain.model.PlaceResult;
 import com.clickandgo.utils.ItemClickSupport;
-import com.clickandgo.viewmodel.PlaceResultsViewModel;
 
-public abstract class PlaceListFragment extends Fragment implements FavoritesToggleListener {
+public abstract class PlacesListFragment extends Fragment implements FavoritesToggleListener {
 
     private RecyclerView mWishRecyclerView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
-    private ProfileListAdapter mAdapter;
-    private PlaceResultsViewModel viewModel;
+    private PlacesListAdapter mAdapter;
+    private PlacesResultsViewModel viewModel;
 
-    private Class<? extends PlaceResultsViewModel> viewModelClass;
+    private Class<? extends PlacesResultsViewModel> viewModelClass;
 
-    public PlaceListFragment(Class<? extends PlaceResultsViewModel> viewModelClass) {
+    public PlacesListFragment(Class<? extends PlacesResultsViewModel> viewModelClass) {
         this.viewModelClass = viewModelClass;
     }
 
@@ -41,7 +40,7 @@ public abstract class PlaceListFragment extends Fragment implements FavoritesTog
         mWishRecyclerView = view.findViewById(R.id.places_list);
         mSwipeRefreshLayout = view.findViewById(R.id.refresh_places_list);
 
-        mAdapter = new ProfileListAdapter(this);
+        mAdapter = new PlacesListAdapter(this);
         mWishRecyclerView.setAdapter(mAdapter);
         mWishRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -70,14 +69,14 @@ public abstract class PlaceListFragment extends Fragment implements FavoritesTog
         ItemClickSupport.addTo(mWishRecyclerView).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
             @Override
             public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-                PlaceResult result = ((ProfileListAdapter) recyclerView.getAdapter()).getItemAt(position);
+                PlaceResult result = ((PlacesListAdapter) recyclerView.getAdapter()).getItemAt(position);
                 Intent mapIntent = new Intent(Intent.ACTION_VIEW, result.getMapUri());
                 startActivity(mapIntent);
             }
 
             @Override
             public void onItemDoubleClicked(RecyclerView recyclerView, int position, View v) {
-                PlaceResult result = ((ProfileListAdapter) recyclerView.getAdapter()).getItemAt(position);
+                PlaceResult result = ((PlacesListAdapter) recyclerView.getAdapter()).getItemAt(position);
                 viewModel.onWishlistToggle(result);
             }
         });

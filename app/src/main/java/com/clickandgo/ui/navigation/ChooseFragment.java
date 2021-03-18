@@ -16,7 +16,7 @@ import androidx.fragment.app.Fragment;
 
 import com.clickandgo.R;
 import com.clickandgo.databinding.OptionBinding;
-import com.clickandgo.model.Option;
+import com.clickandgo.domain.model.Option;
 
 import java.util.ArrayList;
 import java.util.List;

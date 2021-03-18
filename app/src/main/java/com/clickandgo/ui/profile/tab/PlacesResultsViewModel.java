@@ -1,14 +1,14 @@
-package com.clickandgo.viewmodel;
+package com.clickandgo.ui.profile.tab;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.clickandgo.model.PlaceResult;
-import com.clickandgo.usecase.PlaceResultsUseCase;
+import com.clickandgo.domain.model.PlaceResult;
+import com.clickandgo.domain.usecase.PlaceResultsUseCase;
 
 import java.util.List;
 
-public abstract class PlaceResultsViewModel extends ViewModel {
+public abstract class PlacesResultsViewModel extends ViewModel {
 
     protected final PlaceResultsUseCase useCase = PlaceResultsUseCase.getInstance();
 

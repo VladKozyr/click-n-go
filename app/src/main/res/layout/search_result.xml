@@ -6,11 +6,11 @@
 
         <variable
             name="placeResult"
-            type="com.clickandgo.model.PlaceResult" />
+            type="com.clickandgo.domain.model.PlaceResult" />
 
         <variable
             name="presenter"
-            type="com.clickandgo.ui.profile.ProfileListAdapter" />
+            type="com.clickandgo.ui.profile.tab.PlacesListAdapter" />
 
     </data>
 

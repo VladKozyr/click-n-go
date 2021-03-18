@@ -1,4 +1,4 @@
-package com.clickandgo.usecase;
+package com.clickandgo.domain.usecase;
 
 import android.util.Log;
 
@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 
-import com.clickandgo.model.PlaceResult;
+import com.clickandgo.domain.model.PlaceResult;
 import com.clickandgo.repo.UserRepository;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.storage.FirebaseStorage;

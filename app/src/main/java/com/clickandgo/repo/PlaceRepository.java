@@ -2,7 +2,7 @@ package com.clickandgo.repo;
 
 import android.content.Context;
 
-import com.clickandgo.model.PlaceResult;
+import com.clickandgo.domain.model.PlaceResult;
 
 import java.util.ArrayList;
 
