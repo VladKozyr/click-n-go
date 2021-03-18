@@ -9,7 +9,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
@@ -25,7 +24,9 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-public class ProfileActivity extends AppCompatActivity {
+import dagger.android.support.DaggerAppCompatActivity;
+
+public class ProfileActivity extends DaggerAppCompatActivity {
 
     private ImageView userPhoto;
     private TextView textViewEmail;
@@ -36,10 +37,13 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        ProfileFragmentAdapter fragmentAdapter = new ProfileFragmentAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, this);
+        ProfileFragmentAdapter fragmentAdapter = new ProfileFragmentAdapter(
+                getSupportFragmentManager(),
+                FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT,
+                this);
+
         ViewPager viewPager = findViewById(R.id.profileViewPager);
         viewPager.setAdapter(fragmentAdapter);
-
         TabLayout tabLayout = findViewById(R.id.profileTabLayout);
 
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));

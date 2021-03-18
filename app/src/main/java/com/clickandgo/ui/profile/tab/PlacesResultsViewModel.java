@@ -10,7 +10,11 @@ import java.util.List;
 
 public abstract class PlacesResultsViewModel extends ViewModel {
 
-    protected final PlaceResultsUseCase useCase = PlaceResultsUseCase.getInstance();
+    protected final PlaceResultsUseCase useCase;
+
+    public PlacesResultsViewModel(PlaceResultsUseCase useCase) {
+        this.useCase = useCase;
+    }
 
     abstract public LiveData<List<PlaceResult>> getPlacesData();
 

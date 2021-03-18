@@ -22,22 +22,12 @@ import java.util.List;
  */
 public class PlaceResultsUseCase {
 
-    /* Singleton implementation */
-    private static PlaceResultsUseCase instance;
+    private final UserRepository repository;
 
-    /* Singleton implementation */
-    public static synchronized PlaceResultsUseCase getInstance() {
-        if (instance == null) {
-            instance = new PlaceResultsUseCase();
-        }
-        return instance;
+    public PlaceResultsUseCase(UserRepository repository) {
+        this.repository = repository;
     }
 
-    /* Singleton implementation */
-    private PlaceResultsUseCase() {
-    }
-
-    private final UserRepository repository = UserRepository.getInstance();
     private final LinkedList<PlaceResult> history = new LinkedList<>();
     private final LinkedList<PlaceResult> favourites = new LinkedList<>();
 

@@ -55,6 +55,9 @@ dependencies {
     def daggerVer = "2.30.1"
     implementation "com.google.dagger:dagger:$daggerVer"
     annotationProcessor "com.google.dagger:dagger-compiler:$daggerVer"
+    implementation "com.google.dagger:dagger-android:$daggerVer"
+    implementation "com.google.dagger:dagger-android-support:$daggerVer"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$daggerVer"
 
     // Firebase
     implementation platform('com.google.firebase:firebase-bom:26.6.0')

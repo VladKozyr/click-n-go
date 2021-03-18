@@ -1,15 +1,14 @@
 package com.clickandgo;
 
-import android.app.Application;
-
-import com.clickandgo.di.AppComponent;
 import com.clickandgo.di.DaggerAppComponent;
 
-public class App extends Application {
+import dagger.android.AndroidInjector;
+import dagger.android.DaggerApplication;
+
+public class App extends DaggerApplication {
 
     @Override
-    public void onCreate() {
-        super.onCreate();
-        AppComponent component = DaggerAppComponent.create();
+    protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
+        return DaggerAppComponent.builder().application(this).build();
     }
 }

@@ -1,14 +1,36 @@
 package com.clickandgo.di;
 
-import com.clickandgo.ui.profile.tab.favorites.FavouritesViewModel;
-import com.clickandgo.ui.profile.tab.history.HistoryViewModel;
+import android.app.Application;
 
+import com.clickandgo.App;
+import com.clickandgo.di.model.ActivityBuilderModule;
+import com.clickandgo.di.model.FragmentBuilderModule;
+import com.clickandgo.di.model.ProfileModule;
+import com.clickandgo.di.model.ViewModelModule;
+
+import javax.inject.Singleton;
+
+import dagger.BindsInstance;
 import dagger.Component;
+import dagger.android.AndroidInjector;
+import dagger.android.support.AndroidSupportInjectionModule;
 
-@Component
-public interface AppComponent {
+@Singleton
+@Component(modules = {
+        AndroidSupportInjectionModule.class,
+        ActivityBuilderModule.class,
+        FragmentBuilderModule.class,
+        ProfileModule.class,
+        ViewModelModule.class}
+)
+public interface AppComponent extends AndroidInjector<App> {
 
-    void inject(FavouritesViewModel viewModel);
+    @Component.Builder
+    interface Builder {
 
-    void inject(HistoryViewModel viewModel);
+        @BindsInstance
+        Builder application(Application application);
+
+        AppComponent build();
+    }
 }
