@@ -70,4 +70,10 @@ public abstract class PlacesListFragment<T extends PlacesResultsViewModel> exten
             }
         });
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        getViewModel().updatePlaceResults();
+    }
 }

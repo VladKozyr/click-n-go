@@ -19,7 +19,7 @@ public class FavoritesViewModel extends PlacesResultsViewModel {
 
     @Override
     public void updatePlaceResults() {
-        //TODO: add implementation
+        useCase.updateRemoteDataBase();
     }
 
     @Override
