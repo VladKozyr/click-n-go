@@ -8,21 +8,27 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.motion.widget.MotionLayout;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavOptions;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.bumptech.glide.Glide;
+import com.clickandgo.di.viewmodel.ViewModelFactory;
 import com.clickandgo.domain.model.PlaceResult;
 import com.clickandgo.ui.navigation.OnCorrectResultListener;
 import com.clickandgo.ui.navigation.OnEmptyResultListener;
+import com.clickandgo.ui.navigation.SearchViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import javax.inject.Inject;
 
 public class SearchActivity extends AppCompatActivity implements
         ViewSwitcher.ViewFactory,
@@ -39,6 +45,9 @@ public class SearchActivity extends AppCompatActivity implements
     private MotionLayout motionLayout;
     private NavOptions navOptions;
 
+    @Inject
+    public ViewModelFactory factory;
+    public SearchViewModel searchViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +58,8 @@ public class SearchActivity extends AppCompatActivity implements
         } catch (Exception e) {
             Log.d("ACTION BAR", e.getMessage());
         }
+
+        searchViewModel = ViewModelProviders.of(this, factory).get(SearchViewModel.class);
 
         mActionButton = findViewById(R.id.action_button);
         mBackButton = findViewById(R.id.back_button);
@@ -123,7 +134,10 @@ public class SearchActivity extends AppCompatActivity implements
     private void setupActionButton() {
         mActionButton.setText("GO");
         mActionButton.setOnClickListener(v -> {
-            setupTransition(R.id.result, R.id.action_choosePlaceFragment_to_chooseResultFragment, "Go!");
+            if (searchViewModel.isAllOptions())
+                setupTransition(R.id.result, R.id.action_choosePlaceFragment_to_chooseResultFragment, "Go!");
+            else
+                Toast.makeText(this, "Select all options", Toast.LENGTH_SHORT).show();
         });
     }
 

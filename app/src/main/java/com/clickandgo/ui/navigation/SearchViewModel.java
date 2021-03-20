@@ -12,6 +12,7 @@ import com.clickandgo.domain.model.PlaceResult;
 import com.clickandgo.domain.usecase.PlaceResultsUseCase;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -50,8 +51,22 @@ public class SearchViewModel extends ViewModel {
     }
 
     public LiveData<PlaceResult> getSearchResult() {
-        currentResult = useCase.getSearchResult();
+        currentResult = useCase.getSearchResult(
+                getParamOrNull(ChooseTypeFragment.KEY),
+                getParamOrNull(ChooseGroupFragment.KEY),
+                getParamOrNull(ChooseMoneyFragment.KEY),
+                place
+        );
         return currentResult;
+    }
+
+    private String getParamOrNull(String key) {
+        MutableLiveData<Option> data = searchOptionsData.get(key);
+        String res = null;
+        if (data != null && data.getValue() != null) {
+            res = data.getValue().getPostValue();
+        }
+        return res;
     }
 
     public LiveData<Address> getPlace() {
@@ -76,5 +91,19 @@ public class SearchViewModel extends ViewModel {
         PlaceResult result = currentResult.getValue();
         if (result != null)
             result.setLiked(useCase.isDocumentsPresentInFavorites(result.getReference()));
+    }
+
+    public boolean isAllOptions() {
+        boolean flag = searchOptionsData.size() == 3 && place != null;
+
+        if (!flag) return false;
+
+        for (Map.Entry<String, MutableLiveData<Option>> entry : searchOptionsData.entrySet()) {
+            if (entry.getValue().getValue() == null) {
+                flag = false;
+                break;
+            }
+        }
+        return flag;
     }
 }

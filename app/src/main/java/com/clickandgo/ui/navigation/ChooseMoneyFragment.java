@@ -17,8 +17,10 @@ import javax.inject.Inject;
 
 public class ChooseMoneyFragment extends ChooseFragment {
 
+    public static final String KEY = "MONEY";
+
     public ChooseMoneyFragment() {
-        super(R.id.chooseMoneyFragment, R.id.money_layout, "MONEY");
+        super(R.id.chooseMoneyFragment, R.id.money_layout, KEY);
     }
 
     @Override

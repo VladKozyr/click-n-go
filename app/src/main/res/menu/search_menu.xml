@@ -13,23 +13,43 @@
                 <item
                     android:icon="@drawable/option_type_coffee"
                     android:title="@string/type_coffee"
-                    android:titleCondensed="@string/type_coffee_details" />
+                    android:titleCondensed="@string/type_coffee_details">
+                    <menu>
+                        <item android:title="Coffee" />
+                    </menu>
+                </item>
                 <item
                     android:icon="@drawable/option_type_eat"
                     android:title="@string/type_eat"
-                    android:titleCondensed="@string/type_eat_details" />
+                    android:titleCondensed="@string/type_eat_details">
+                    <menu>
+                        <item android:title="Eat" />
+                    </menu>
+                </item>
                 <item
                     android:icon="@drawable/option_type_vegan"
                     android:title="@string/type_vegan"
-                    android:titleCondensed="@string/type_vegan_details" />
+                    android:titleCondensed="@string/type_vegan_details">
+                    <menu>
+                        <item android:title="Vegan" />
+                    </menu>
+                </item>
                 <item
                     android:icon="@drawable/option_type_bar"
                     android:title="@string/type_bar"
-                    android:titleCondensed="@string/type_bar_details" />
+                    android:titleCondensed="@string/type_bar_details">
+                    <menu>
+                        <item android:title="Bar" />
+                    </menu>
+                </item>
                 <item
                     android:icon="@drawable/option_type_hookah"
                     android:title="@string/type_hookah"
-                    android:titleCondensed="@string/type_hookah_details" />
+                    android:titleCondensed="@string/type_hookah_details">
+                    <menu>
+                        <item android:title="Lounge" />
+                    </menu>
+                </item>
             </group>
         </menu>
     </item>
@@ -43,25 +63,46 @@
         <menu>
             <group android:checkableBehavior="single">
                 <item
+                    android:contentDescription=""
                     android:icon="@drawable/option_group_single"
                     android:title="@string/group_single"
-                    android:titleCondensed="@string/group_single_details" />
+                    android:titleCondensed="@string/group_single_details">
+                    <menu>
+                        <item android:title="1" />
+                    </menu>
+                </item>
                 <item
                     android:icon="@drawable/option_group_date"
                     android:title="@string/group_date"
-                    android:titleCondensed="@string/group_date_details" />
+                    android:titleCondensed="@string/group_date_details">
+                    <menu>
+                        <item android:title="2" />
+                    </menu>
+                </item>
                 <item
                     android:icon="@drawable/option_group_party"
                     android:title="@string/group_friends"
-                    android:titleCondensed="@string/group_friends_details" />
+                    android:titleCondensed="@string/group_friends_details">
+                    <menu>
+                        <item android:title="5" />
+                    </menu>
+                </item>
                 <item
                     android:icon="@drawable/option_group_friends"
                     android:title="@string/group_party"
-                    android:titleCondensed="@string/group_party_details" />
+                    android:titleCondensed="@string/group_party_details">
+                    <menu>
+                        <item android:title="10" />
+                    </menu>
+                </item>
                 <item
                     android:icon="@drawable/option_group_corporate"
                     android:title="@string/group_corporate"
-                    android:titleCondensed="@string/group_corporate_details" />
+                    android:titleCondensed="@string/group_corporate_details">
+                    <menu>
+                        <item android:title="INF" />
+                    </menu>
+                </item>
             </group>
         </menu>
     </item>
@@ -77,23 +118,43 @@
                 <item
                     android:icon="@drawable/option_money_economy"
                     android:title="@string/money_economy"
-                    android:titleCondensed="@string/money_economy_details" />
+                    android:titleCondensed="@string/money_economy_details">
+                    <menu>
+                        <item android:title="100" />
+                    </menu>
+                </item>
                 <item
                     android:icon="@drawable/option_money_middle"
                     android:title="@string/money_middle"
-                    android:titleCondensed="@string/money_middle_details" />
+                    android:titleCondensed="@string/money_middle_details">
+                    <menu>
+                        <item android:title="200" />
+                    </menu>
+                </item>
                 <item
                     android:icon="@drawable/option_money_business"
                     android:title="@string/money_business"
-                    android:titleCondensed="@string/money_business_details" />
+                    android:titleCondensed="@string/money_business_details">
+                    <menu>
+                        <item android:title="300" />
+                    </menu>
+                </item>
                 <item
                     android:icon="@drawable/option_money_high"
                     android:title="@string/money_high"
-                    android:titleCondensed="@string/money_high_details" />
+                    android:titleCondensed="@string/money_high_details">
+                    <menu>
+                        <item android:title="500" />
+                    </menu>
+                </item>
                 <item
                     android:icon="@drawable/option_money_luxury"
                     android:title="@string/money_luxury"
-                    android:titleCondensed="@string/money_luxury_details" />
+                    android:titleCondensed="@string/money_luxury_details">
+                    <menu>
+                        <item android:title="501" />
+                    </menu>
+                </item>
             </group>
         </menu>
     </item>

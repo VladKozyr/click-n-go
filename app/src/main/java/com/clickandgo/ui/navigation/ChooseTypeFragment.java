@@ -16,8 +16,10 @@ import javax.inject.Inject;
 
 public class ChooseTypeFragment extends ChooseFragment {
 
+    public static final String KEY = "TYPE";
+
     public ChooseTypeFragment() {
-        super(R.id.chooseTypeFragment, R.id.type_layout, "TYPE");
+        super(R.id.chooseTypeFragment, R.id.type_layout, KEY);
     }
 
     @Override

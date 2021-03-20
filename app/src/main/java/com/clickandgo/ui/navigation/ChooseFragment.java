@@ -1,6 +1,7 @@
 package com.clickandgo.ui.navigation;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -94,7 +95,8 @@ public abstract class ChooseFragment extends DaggerFragment {
                     (String) menuItem.getTitle(),
                     (String) menuItem.getTitleCondensed(),
                     menuItem.getIcon(),
-                    MENU_KEY
+                    MENU_KEY,
+                    menuItem.getSubMenu().getItem(0).getTitle().toString()
             );
             binding.setOption(option);
             binding.setPresenter(this);

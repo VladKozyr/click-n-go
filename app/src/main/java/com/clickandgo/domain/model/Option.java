@@ -1,7 +1,6 @@
 package com.clickandgo.domain.model;
 
 import android.graphics.drawable.Drawable;
-import android.view.MenuItem;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
@@ -16,13 +15,14 @@ public class Option extends BaseObservable {
     private boolean isChecked;
 
     private final String menuKey;
+    private final String postValue;
 
-
-    public Option(String name, String description, Drawable icon, String menuKey) {
+    public Option(String name, String description, Drawable icon, String menuKey, String postValue) {
         this.name = name;
         this.description = description;
         this.icon = icon;
         this.menuKey = menuKey;
+        this.postValue = postValue;
     }
 
     @Bindable
@@ -35,6 +35,10 @@ public class Option extends BaseObservable {
             isChecked = flag;
             notifyPropertyChanged(BR.checked);
         }
+    }
+
+    public String getPostValue() {
+        return postValue;
     }
 
     @Override

@@ -1,10 +1,16 @@
 package com.clickandgo.repo;
 
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.List;
 import java.util.Random;
@@ -29,20 +35,25 @@ public class PlaceRepository {
     }
 
     //TODO put real params
-    public MutableLiveData<DocumentReference> searchForRandomPlace() {
+    public MutableLiveData<DocumentReference> searchForRandomPlace(String type, String group, String money, String place) {
         MutableLiveData<DocumentReference> referenceMutableLiveData = new MutableLiveData<>();
+        Log.d("SEARCH", type + " " + group + " " + money + " " + place);
         db.collection(PLACES_COLLECTION)
-                .document("Контрактова площа")
-                .collection("300")
-                .whereArrayContains(AMOUNT, 2)
+                .document(place)
+                .collection(money)
+                .whereArrayContains(TYPE, type)
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     List<DocumentSnapshot> documentSnapshots = queryDocumentSnapshots.getDocuments();
-                    if (documentSnapshots.size() == 0) return;
+                    if (documentSnapshots.size() == 0) {
+                        referenceMutableLiveData.setValue(null);
+                        return;
+                    }
 
                     int randomIndex = new Random().nextInt(documentSnapshots.size());
                     DocumentReference reference = documentSnapshots.get(randomIndex).getReference();
                     referenceMutableLiveData.setValue(reference);
+                    Log.d("SEARCH", "END");
                     //referenceMutableLiveData.setValue(null);
                 });
         return referenceMutableLiveData;

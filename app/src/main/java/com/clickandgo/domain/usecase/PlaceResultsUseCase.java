@@ -42,7 +42,6 @@ public class PlaceResultsUseCase {
     private final MutableLiveData<List<PlaceResult>> favoritesLiveData = new MutableLiveData<>();
     private final MutableLiveData<List<PlaceResult>> historyLiveData = new MutableLiveData<>();
 
-    //TODO reverse?
     public LiveData<List<PlaceResult>> observeFavorites() {
         return Transformations.switchMap(repository.getFavourites(), input -> {
             favourites.clear();
@@ -66,10 +65,11 @@ public class PlaceResultsUseCase {
     }
 
     //TODO input params, bad code...
-    public LiveData<PlaceResult> getSearchResult() {
+    public LiveData<PlaceResult> getSearchResult(String type, String group, String money, String place) {
         return Transformations.map(
-                placeRepository.searchForRandomPlace(),
+                placeRepository.searchForRandomPlace(type, group, money, place),
                 input -> {
+                    if (input == null) return null;
                     PlaceResult result = mapToPlaceResult(input, false);
                     repository.getFavourites().observeForever(documentReferences -> {
                         result.setLiked(documentReferences.contains(input));

@@ -19,8 +19,10 @@ import javax.inject.Inject;
 
 public class ChooseGroupFragment extends ChooseFragment {
 
+    public static final String KEY = "GROUP";
+
     public ChooseGroupFragment() {
-        super(R.id.chooseGroupFragment, R.id.group_layout, "GROUP");
+        super(R.id.chooseGroupFragment, R.id.group_layout, KEY);
     }
 
     @Override
