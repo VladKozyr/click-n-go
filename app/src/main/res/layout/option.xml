@@ -6,6 +6,10 @@
         <variable
             name="option"
             type="com.clickandgo.domain.model.Option" />
+
+        <variable
+            name="presenter"
+            type="com.clickandgo.ui.navigation.ChooseFragment" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -13,11 +17,12 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginVertical="8dp"
-        android:checkable="true"
         android:checked="@{option.checked}"
+        android:checkable="true"
         android:clickable="true"
         android:focusable="true"
         android:foreground="?android:selectableItemBackground"
+        android:onClick="@{() -> presenter.onOptionClick(option)}"
         app:cardBackgroundColor="@drawable/radio_button"
         app:cardCornerRadius="12dp"
         app:checkedIcon="@null">
@@ -39,7 +44,7 @@
             <CheckedTextView
                 android:id="@+id/option_text"
                 style="@style/Option.OptionText"
-                android:layout_width="266dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"

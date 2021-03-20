@@ -3,20 +3,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".ui.navigation.ChooseResultFragment">
 
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Find"/>
-
     <TextView
-        android:id="@+id/result"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textColor="@color/white"/>
+        android:id="@+id/sorry_message"
+        style="@style/Sorry.Message"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:text="@string/sorry_message"
+        android:visibility="invisible" />
+
+<!--    <ProgressBar-->
+<!--        android:id="@+id/progress_bar"-->
+<!--        style="@style/Widget.MaterialComponents.CircularProgressIndicator"-->
+<!--        android:layout_width="40dp"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:indeterminateDrawable="@drawable/spinner_ring"-->
+<!--        android:indeterminateOnly="true" />-->
 
     <LinearLayout
         android:id="@+id/result_layout"

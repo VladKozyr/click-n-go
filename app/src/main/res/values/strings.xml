@@ -79,6 +79,9 @@
     <!-- Action labels -->
     <string name="go">GO</string>
 
+    <!-- Sorry block -->
+    <string name="sorry_message">Sorry, we can’t find any places according to your request. Change search settings and try again :)</string>
+
     <string-array name="subway_stations">
         <item>Іподром</item>
         <item>Академмістечко</item>

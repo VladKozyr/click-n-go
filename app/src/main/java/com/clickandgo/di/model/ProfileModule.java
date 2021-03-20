@@ -1,6 +1,7 @@
 package com.clickandgo.di.model;
 
 import com.clickandgo.domain.usecase.PlaceResultsUseCase;
+import com.clickandgo.repo.PlaceRepository;
 import com.clickandgo.repo.UserRepository;
 
 import javax.inject.Singleton;
@@ -19,7 +20,13 @@ public class ProfileModule {
 
     @Singleton
     @Provides
-    public PlaceResultsUseCase provideUseCase(UserRepository repository) {
-        return new PlaceResultsUseCase(repository);
+    public PlaceRepository providePlaceRepository() {
+        return new PlaceRepository();
+    }
+
+    @Singleton
+    @Provides
+    public PlaceResultsUseCase provideUseCase(UserRepository repository, PlaceRepository placeRepository) {
+        return new PlaceResultsUseCase(repository, placeRepository);
     }
 }

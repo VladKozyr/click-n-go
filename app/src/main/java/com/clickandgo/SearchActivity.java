@@ -18,10 +18,16 @@ import androidx.navigation.NavOptions;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.bumptech.glide.Glide;
+import com.clickandgo.domain.model.PlaceResult;
+import com.clickandgo.ui.navigation.OnCorrectResultListener;
+import com.clickandgo.ui.navigation.OnEmptyResultListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class SearchActivity extends AppCompatActivity implements ViewSwitcher.ViewFactory {
+public class SearchActivity extends AppCompatActivity implements
+        ViewSwitcher.ViewFactory,
+        OnEmptyResultListener,
+        OnCorrectResultListener {
 
     private static final int RESULT_PHOTO_UPDATED = 3;
 
@@ -106,15 +112,18 @@ public class SearchActivity extends AppCompatActivity implements ViewSwitcher.Vi
             setupTransition(R.id.place_expanded, R.id.choosePlaceFragment, "Where?");
         });
 
-        mActionButton.setOnClickListener(v -> {
-            setupTransition(R.id.result, R.id.action_choosePlaceFragment_to_chooseResultFragment, "Go!");
-        });
+        setupActionButton();
 
         mBackButton.setOnClickListener(v -> {
             setupTransition(R.id.place_expanded, R.id.choosePlaceFragment, "Where?");
-            mActionButton.setOnClickListener(v1 -> {
-                setupTransition(R.id.result, R.id.action_choosePlaceFragment_to_chooseResultFragment, "Go!");
-            });
+            setupActionButton();
+        });
+    }
+
+    private void setupActionButton() {
+        mActionButton.setText("GO");
+        mActionButton.setOnClickListener(v -> {
+            setupTransition(R.id.result, R.id.action_choosePlaceFragment_to_chooseResultFragment, "Go!");
         });
     }
 
@@ -142,5 +151,23 @@ public class SearchActivity extends AppCompatActivity implements ViewSwitcher.Vi
         TextView textView = new TextView(this);
         textView.setTextAppearance(this, R.style.Search_Question);
         return textView;
+    }
+
+    @Override
+    public void updateUI() {
+        mTextSwitcher.setText("Sorry");
+        mActionButton.setText("back");
+        mActionButton.setOnClickListener(v -> {
+            setupTransition(R.id.place_expanded, R.id.choosePlaceFragment, "Where?");
+            setupActionButton();
+        });
+    }
+
+    @Override
+    public void onCorrectResult(PlaceResult result) {
+        mActionButton.setOnClickListener(v -> {
+            Intent mapIntent = new Intent(Intent.ACTION_VIEW, result.getMapUri());
+            startActivity(mapIntent);
+        });
     }
 }

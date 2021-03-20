@@ -4,6 +4,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.databinding.BindingAdapter;
@@ -111,5 +112,11 @@ public class PlaceResult extends BaseObservable {
     @Override
     public int hashCode() {
         return Objects.hash(reference);
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return reference.getPath();
     }
 }

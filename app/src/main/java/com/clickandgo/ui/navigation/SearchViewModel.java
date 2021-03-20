@@ -7,14 +7,25 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.clickandgo.domain.model.Option;
+import com.clickandgo.domain.model.PlaceResult;
+import com.clickandgo.domain.usecase.PlaceResultsUseCase;
 
 import java.util.HashMap;
 
-public class ChooseViewModel extends ViewModel {
+import javax.inject.Inject;
+
+public class SearchViewModel extends ViewModel {
+
     private final HashMap<String, MutableLiveData<Option>> searchOptionsData;
     private final MutableLiveData<String> placeData;
 
-    public ChooseViewModel() {
+    private LiveData<PlaceResult> currentResult;
+
+    private final PlaceResultsUseCase useCase;
+
+    @Inject
+    public SearchViewModel(PlaceResultsUseCase useCase) {
+        this.useCase = useCase;
         this.searchOptionsData = new HashMap<>();
         this.placeData = new MutableLiveData<>();
     }
@@ -36,11 +47,31 @@ public class ChooseViewModel extends ViewModel {
         return optionLiveData;
     }
 
+    public LiveData<PlaceResult> getSearchResult() {
+        currentResult = useCase.getSearchResult();
+        return currentResult;
+    }
+
     public LiveData<String> getPlace() {
         return placeData;
     }
 
     public void setPlace(String place) {
         placeData.setValue(place);
+    }
+
+    public void toggleFavourites() {
+        PlaceResult results = currentResult.getValue();
+        if (!results.isLiked()) {
+            useCase.addSingleFavourite(results);
+        } else {
+            useCase.removeSingleFavourite(results);
+        }
+    }
+
+    public void updatePlaceResultState() {
+        PlaceResult result = currentResult.getValue();
+        if (result != null)
+            result.setLiked(useCase.isDocumentsPresentInFavorites(result.getReference()));
     }
 }

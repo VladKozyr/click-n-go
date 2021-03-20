@@ -2,19 +2,25 @@ package com.clickandgo.domain.usecase;
 
 import android.util.Log;
 
+import androidx.arch.core.util.Function;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.Transformations;
 
 import com.clickandgo.domain.model.PlaceResult;
+import com.clickandgo.repo.PlaceRepository;
 import com.clickandgo.repo.UserRepository;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.Transaction;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Observable;
 
 /**
  * Represent entry point to communicate over lists of {@link PlaceResult}, which
@@ -23,9 +29,11 @@ import java.util.List;
 public class PlaceResultsUseCase {
 
     private final UserRepository repository;
+    private final PlaceRepository placeRepository;
 
-    public PlaceResultsUseCase(UserRepository repository) {
+    public PlaceResultsUseCase(UserRepository repository, PlaceRepository placeRepository) {
         this.repository = repository;
+        this.placeRepository = placeRepository;
     }
 
     private final LinkedList<PlaceResult> history = new LinkedList<>();
@@ -34,13 +42,14 @@ public class PlaceResultsUseCase {
     private final MutableLiveData<List<PlaceResult>> favoritesLiveData = new MutableLiveData<>();
     private final MutableLiveData<List<PlaceResult>> historyLiveData = new MutableLiveData<>();
 
+    //TODO reverse?
     public LiveData<List<PlaceResult>> observeFavorites() {
         return Transformations.switchMap(repository.getFavourites(), input -> {
             favourites.clear();
             for (DocumentReference result : input) {
                 favourites.add(mapToPlaceResult(result, true));
             }
-            favoritesLiveData.setValue(favourites);
+            favoritesLiveData.setValue(getReversedCopyOfList(favourites));
             return favoritesLiveData;
         });
     }
@@ -51,9 +60,22 @@ public class PlaceResultsUseCase {
             for (DocumentReference result : input) {
                 history.add(mapToPlaceResult(result, isDocumentsPresentInFavorites(result)));
             }
-            historyLiveData.setValue(history);
+            historyLiveData.setValue(getReversedCopyOfList(history));
             return historyLiveData;
         });
+    }
+
+    //TODO input params, bad code...
+    public LiveData<PlaceResult> getSearchResult() {
+        return Transformations.map(
+                placeRepository.searchForRandomPlace(),
+                input -> {
+                    PlaceResult result = mapToPlaceResult(input, false);
+                    repository.getFavourites().observeForever(documentReferences -> {
+                        result.setLiked(documentReferences.contains(input));
+                    });
+                    return result;
+                });
     }
 
     /**
@@ -64,9 +86,19 @@ public class PlaceResultsUseCase {
      */
     public void addFavourite(PlaceResult data) {
         updateHistory(data, true);
-        favourites.addFirst(data);
-        favoritesLiveData.postValue(favourites);
-        historyLiveData.postValue(history);
+        favourites.add(data);
+        favoritesLiveData.postValue(getReversedCopyOfList(favourites));
+        historyLiveData.postValue(getReversedCopyOfList(history));
+    }
+
+    public void addSingleFavourite(PlaceResult data) {
+        if (data == null) return;
+        repository.addToFavourites(data.getReference());
+    }
+
+    public void removeSingleFavourite(PlaceResult data) {
+        if (data == null) return;
+        repository.removeFromFavourites(data.getReference());
     }
 
     /**
@@ -78,8 +110,14 @@ public class PlaceResultsUseCase {
     public void removeFavourite(PlaceResult data) {
         updateHistory(data, false);
         favourites.remove(data);
-        favoritesLiveData.postValue(favourites);
-        historyLiveData.postValue(history);
+        favoritesLiveData.postValue(getReversedCopyOfList(favourites));
+        historyLiveData.postValue(getReversedCopyOfList(history));
+    }
+
+    private <T> List<T> getReversedCopyOfList(List<T> list) {
+        List<T> copy = new ArrayList<>(list);
+        Collections.reverse(copy);
+        return copy;
     }
 
     /**
@@ -107,6 +145,9 @@ public class PlaceResultsUseCase {
     }
 
     private PlaceResult mapToPlaceResult(DocumentReference reference, boolean defaultLike) {
+
+        if (reference == null) return null;
+
         String[] fields = reference.getPath().split("/");
         PlaceResult placeResult = new PlaceResult(fields[3], fields[1], fields[2], reference, defaultLike);
 
@@ -137,7 +178,7 @@ public class PlaceResultsUseCase {
         return resultList;
     }
 
-    private boolean isDocumentsPresentInFavorites(DocumentReference reference) {
+    public boolean isDocumentsPresentInFavorites(DocumentReference reference) {
         boolean isExist = false;
         for (PlaceResult result : favourites) {
             isExist = result.getReference().equals(reference);
@@ -145,7 +186,6 @@ public class PlaceResultsUseCase {
                 break;
             }
         }
-        Log.w("TEST", "isExist " + isExist);
         return isExist;
     }
 }

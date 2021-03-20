@@ -56,7 +56,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:text="@{placeResult.place}"
-                    app:drawableStartCompat="@drawable/ic_place"
+                    app:drawableStartCompat="@drawable/ic_small_place"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -89,6 +89,7 @@
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <CheckBox
+                    android:id="@+id/result_like"
                     android:layout_width="35dp"
                     android:layout_height="30dp"
                     android:background="@drawable/heart_checkbox"

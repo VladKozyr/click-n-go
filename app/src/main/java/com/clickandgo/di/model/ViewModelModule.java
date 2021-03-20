@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.clickandgo.di.viewmodel.ViewModelKey;
+import com.clickandgo.ui.navigation.SearchViewModel;
 import com.clickandgo.ui.profile.tab.favorites.FavoritesViewModel;
 import com.clickandgo.ui.profile.tab.history.HistoryViewModel;
 
@@ -23,6 +24,11 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(model = FavoritesViewModel.class)
     public abstract ViewModel provideFavoritesViewModel(FavoritesViewModel model);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(model = SearchViewModel.class)
+    public abstract ViewModel provideSearchViewModel(SearchViewModel model);
 
     @Binds
     public abstract ViewModelProvider.Factory provideViewModelFactory(ViewModelProvider.Factory factory);

@@ -17,10 +17,13 @@ import android.widget.AutoCompleteTextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.clickandgo.R;
+import com.clickandgo.di.viewmodel.ViewModelFactory;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
@@ -31,39 +34,31 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ChoosePlaceFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import javax.inject.Inject;
+
 public class ChoosePlaceFragment extends Fragment implements OnMapReadyCallback, AdapterView.OnItemClickListener {
 
     private static final String TAG = ChoosePlaceFragment.class.getSimpleName();
+
     private GoogleMap mMap;
+    private SupportMapFragment mapFragment;
     private AutoCompleteTextView textView;
 
-    private static float DEFAULT_ZOOM = 12;
+    private static final float DEFAULT_ZOOM = 12f;
 
-    public ChoosePlaceFragment() {
-        // Required empty public constructor
-    }
-
-    public static ChoosePlaceFragment newInstance(String param1, String param2) {
-        ChoosePlaceFragment fragment = new ChoosePlaceFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
-    }
+    @Inject
+    public ViewModelFactory factory;
+    public SearchViewModel searchViewModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        searchViewModel = ViewModelProviders.of(requireActivity(), factory).get(SearchViewModel.class);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_choose_place, container, false);
     }
 
@@ -75,7 +70,8 @@ public class ChoosePlaceFragment extends Fragment implements OnMapReadyCallback,
         String[] subwayStations = getResources().getStringArray(R.array.subway_stations);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
                 android.R.layout.simple_dropdown_item_1line, subwayStations);
-        textView = (AutoCompleteTextView) getView().findViewById(R.id.autoCompleteTextView);
+
+        textView = getView().findViewById(R.id.autoCompleteTextView);
         textView.setAdapter(adapter);
         textView.setOnItemClickListener(this);
     }
@@ -83,7 +79,7 @@ public class ChoosePlaceFragment extends Fragment implements OnMapReadyCallback,
     private void initMap() {
         Activity activity = getActivity();
         if (activity != null) {
-            SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
+            mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
 
             assert mapFragment != null;
             mapFragment.getMapAsync(this);
@@ -127,11 +123,24 @@ public class ChoosePlaceFragment extends Fragment implements OnMapReadyCallback,
 
         if (!list.isEmpty()) {
             Address address = list.get(0);
-            moveCamera(new LatLng(address.getLatitude(), address.getLongitude()), DEFAULT_ZOOM, address.getAddressLine(0));
+            moveCamera(new LatLng(
+                            address.getLatitude(),
+                            address.getLongitude()),
+                    DEFAULT_ZOOM,
+                    address.getAddressLine(0)
+            );
             InputMethodManager in = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
             in.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
         } else {
-            Log.d(TAG, "Not found");
+            Log.e(TAG, "Place not found");
         }
+    }
+
+    @Override
+    public void onDestroyView() {
+        mMap.clear();
+        mapFragment.onDestroy();
+        mapFragment = null;
+        super.onDestroyView();
     }
 }

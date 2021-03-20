@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
@@ -60,14 +61,6 @@ public class UserRepository {
         return getUserDocument(user.getEmail());
     }
 
-    /*
-           if (!favourites.isEmpty()) {
-            docFavoritesLiveData.setValue(favourites);
-            // update firebase
-            if (isUpdated) updateFavourites();
-            return docFavoritesLiveData;
-        }
-     */
     public MutableLiveData<List<DocumentReference>> getFavourites() {
         getUserDocument().get().addOnSuccessListener(documentSnapshot -> {
             docFavoritesLiveData.setValue((ArrayList<DocumentReference>) documentSnapshot.get(FAVOURITES));
@@ -75,12 +68,6 @@ public class UserRepository {
         return docFavoritesLiveData;
     }
 
-    /*
-         if (!history.isEmpty()) {
-            docHistoryLiveData.setValue(history);
-            return docHistoryLiveData;
-        }
-     */
     public MutableLiveData<List<DocumentReference>> getHistory() {
         getUserDocument().get().addOnSuccessListener(documentSnapshot -> {
             docHistoryLiveData.setValue((ArrayList<DocumentReference>) documentSnapshot.get(HISTORY));
@@ -88,17 +75,25 @@ public class UserRepository {
         return docHistoryLiveData;
     }
 
-     public synchronized void updateFavourites(List<DocumentReference> list) {
+    public synchronized void updateFavourites(List<DocumentReference> list) {
         getUserDocument().update(FAVOURITES, list);
         isUpdated = false;
     }
 
-    public  synchronized void updateHistory(List<DocumentReference> list) {
+    public synchronized void addToFavourites(DocumentReference reference) {
+        getUserDocument().update(FAVOURITES, FieldValue.arrayUnion(reference));
+    }
+
+    public synchronized void removeFromFavourites(DocumentReference reference) {
+        getUserDocument().update(FAVOURITES, FieldValue.arrayRemove(reference));
+    }
+
+    public synchronized void updateHistory(List<DocumentReference> list) {
         getUserDocument().update(HISTORY, list);
         isUpdated = false;
     }
 
-    public void pushToHistory(DocumentReference documentReference) {
-
+    public synchronized void addToHistory(DocumentReference reference) {
+        getUserDocument().update(HISTORY, FieldValue.arrayUnion(reference));
     }
 }

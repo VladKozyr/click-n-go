@@ -1,101 +1,93 @@
 package com.clickandgo.ui.navigation;
 
-import android.location.Geocoder;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.clickandgo.R;
+import com.clickandgo.SearchActivity;
 import com.clickandgo.databinding.SearchResultBinding;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.clickandgo.di.viewmodel.ViewModelFactory;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ChooseResultFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import javax.inject.Inject;
+
 public class ChooseResultFragment extends Fragment {
-
-    private static final String PLACES = "places";
-    private static final String AMOUNT = "amount";
-    private static final String TYPE = "type";
-    private static final String LINK = "link";
-    private static final String TAG = "RESULT";
 
     private TextView result;
     private LinearLayout layout;
 
+    @Inject
+    public ViewModelFactory factory;
+    public SearchViewModel searchViewModel;
 
-    public ChooseResultFragment() {
-        // Required empty public constructor
-    }
+    private OnEmptyResultListener onEmptyResultListener;
+    private OnCorrectResultListener onCorrectResultListener;
 
-    public static ChooseResultFragment newInstance(String param1, String param2) {
-        ChooseResultFragment fragment = new ChooseResultFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        onEmptyResultListener = ((SearchActivity) getActivity());
+        onCorrectResultListener = ((SearchActivity) getActivity());
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        searchViewModel = ViewModelProviders.of(requireActivity(), factory).get(SearchViewModel.class);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_choose_result, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Button button = getView().findViewById(R.id.button);
-        button.setOnClickListener(this::onFindClick);
         result = getView().findViewById(R.id.result);
         layout = getView().findViewById(R.id.result_layout);
+
+        setupOnLoad();
     }
 
-    public void onFindClick(View view) {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private void setupOnLoad() {
+        searchViewModel.getSearchResult().observe(getViewLifecycleOwner(), result -> {
+            if (result == null) {
+                onEmptyResultListener.updateUI();
+                getView().findViewById(R.id.sorry_message).setVisibility(View.VISIBLE);
+            } else {
+                SearchResultBinding binding = SearchResultBinding
+                        .inflate(LayoutInflater.from(getContext()), layout, false);
+                binding.setPlaceResult(result);
 
-        //TODO repo call
-        db.collection(PLACES)
-                .document("Кловська")
-                .collection("100")
-                .whereArrayContains(TYPE, "Coffee")
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        StringBuilder sb = new StringBuilder();
-                        for (DocumentSnapshot document : task.getResult()) {
-                            Log.d(PLACES, document.getId());
-                            sb.append(document.getData().toString())
-                                    .append(System.lineSeparator());
-                        }
-                        SearchResultBinding binding = SearchResultBinding.inflate(getLayoutInflater(), layout, false);
-//                        binding.setPlaceResult(new PlaceResult("Neproseco"));
-//                        binding.getRoot().setOnClickListener(v -> {
-//                            Uri address = Uri.parse("https://maps.google.com/?cid=10426385408524127842");
-//                            Intent mapIntent = new Intent(Intent.ACTION_VIEW, address);
-//                            mapIntent.setPackage("com.google.android.apps.maps");
-//                            startActivity(mapIntent);
-//                        });
-                        layout.addView(binding.getRoot());
-                    }
+                ViewGroup.LayoutParams layoutParams = binding.getRoot().getLayoutParams();
+                layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
+                binding.getRoot().setLayoutParams(layoutParams);
+
+                binding.resultLike.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    searchViewModel.toggleFavourites();
                 });
-        Geocoder geocoder = new Geocoder(getContext());
+
+                layout.addView(binding.getRoot());
+                onCorrectResultListener.onCorrectResult(result);
+            }
+        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        searchViewModel.updatePlaceResultState();
     }
 }

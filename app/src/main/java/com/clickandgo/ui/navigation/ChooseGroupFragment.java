@@ -8,26 +8,24 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.clickandgo.R;
+import com.clickandgo.di.viewmodel.ViewModelFactory;
+
+import javax.inject.Inject;
 
 
 public class ChooseGroupFragment extends ChooseFragment {
 
     public ChooseGroupFragment() {
-        super(R.id.chooseGroupFragment, R.id.group_layout);
+        super(R.id.chooseGroupFragment, R.id.group_layout, "GROUP");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.d("ON CREATE", "VIEW");
         return inflater.inflate(R.layout.fragment_choose_group, container, false);
-    }
-
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
     }
 }
