@@ -1,17 +1,11 @@
 package com.clickandgo.repo;
 
-import android.content.Context;
-
 import androidx.lifecycle.MutableLiveData;
 
-import com.clickandgo.domain.model.PlaceResult;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 

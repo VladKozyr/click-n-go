@@ -1,5 +1,6 @@
 package com.clickandgo.ui.navigation;
 
+import android.location.Address;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
@@ -17,7 +18,8 @@ import javax.inject.Inject;
 public class SearchViewModel extends ViewModel {
 
     private final HashMap<String, MutableLiveData<Option>> searchOptionsData;
-    private final MutableLiveData<String> placeData;
+    private final MutableLiveData<Address> placeData;
+    private String place;
 
     private LiveData<PlaceResult> currentResult;
 
@@ -52,12 +54,13 @@ public class SearchViewModel extends ViewModel {
         return currentResult;
     }
 
-    public LiveData<String> getPlace() {
+    public LiveData<Address> getPlace() {
         return placeData;
     }
 
-    public void setPlace(String place) {
-        placeData.setValue(place);
+    public void setPlace(String place, Address address) {
+        placeData.setValue(address);
+        this.place = place;
     }
 
     public void toggleFavourites() {

@@ -17,13 +17,13 @@ import android.widget.AutoCompleteTextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.clickandgo.R;
 import com.clickandgo.di.viewmodel.ViewModelFactory;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
@@ -96,7 +96,14 @@ public class ChoosePlaceFragment extends Fragment implements OnMapReadyCallback,
             Log.e(TAG, "Style parsing failed.");
         }
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(50.45466, 30.5238), DEFAULT_ZOOM));
+        LiveData<Address> livePlace = searchViewModel.getPlace();
+        livePlace.observe(getViewLifecycleOwner(), this::setupPlaceMarker);
+
+        if (livePlace.getValue() == null) {
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(50.45466, 30.5238), DEFAULT_ZOOM));
+        } else {
+            setupPlaceMarker(livePlace.getValue());
+        }
     }
 
     private void moveCamera(LatLng latLng, float zoom, String title) {
@@ -111,7 +118,11 @@ public class ChoosePlaceFragment extends Fragment implements OnMapReadyCallback,
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        String searchQuery = textView.getText().toString() + " метро";
+        InputMethodManager in = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        in.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
+
+        String place = textView.getText().toString();
+        String searchQuery = place + " станція метро";
         Geocoder geocoder = new Geocoder(getContext());
         List<Address> list = new ArrayList<>();
         try {
@@ -120,20 +131,29 @@ public class ChoosePlaceFragment extends Fragment implements OnMapReadyCallback,
             Log.e(TAG, "geolocate exception");
         }
 
-
         if (!list.isEmpty()) {
             Address address = list.get(0);
+            searchViewModel.setPlace(place, address);
+            mMap.clear();
             moveCamera(new LatLng(
                             address.getLatitude(),
                             address.getLongitude()),
                     DEFAULT_ZOOM,
                     address.getAddressLine(0)
             );
-            InputMethodManager in = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-            in.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
         } else {
             Log.e(TAG, "Place not found");
         }
+    }
+
+    private void setupPlaceMarker(Address address) {
+        mMap.clear();
+        moveCamera(new LatLng(
+                        address.getLatitude(),
+                        address.getLongitude()),
+                DEFAULT_ZOOM,
+                address.getAddressLine(0)
+        );
     }
 
     @Override
