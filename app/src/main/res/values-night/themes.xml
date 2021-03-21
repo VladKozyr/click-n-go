@@ -2,9 +2,10 @@
     <!-- Base application theme. -->
     <style name="Theme.ClickAndGo" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">@color/colorProfileBackground</item>
+        <item name="colorPrimaryVariant">@color/colorProfileBackground</item>
         <item name="colorOnPrimary">@color/black</item>
+        <item name="android:colorEdgeEffect">@color/colorProfileBackground</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_200</item>
