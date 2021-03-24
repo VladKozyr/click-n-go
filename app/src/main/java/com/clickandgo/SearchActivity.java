@@ -101,11 +101,7 @@ public class SearchActivity extends AppCompatActivity implements
                 .findFragmentById(R.id.question_fragment_view);
 
         motionLayout = findViewById(R.id.question_navigation_view);
-
-
-        //TODO fix bug
-        if (motionLayout.getCurrentState() == R.id.base)
-            setupTransition(R.id.type_expanded, R.id.chooseTypeFragment, "What?");
+        setupTransition(R.id.type_expanded, R.id.chooseTypeFragment, "What?");
 
         findViewById(R.id.type_icon).setOnClickListener(v -> {
             setupTransition(R.id.type_expanded, R.id.chooseTypeFragment, "What?");
@@ -142,8 +138,7 @@ public class SearchActivity extends AppCompatActivity implements
     }
 
     private void setupTransition(@IdRes int anim, @IdRes int fragment, String title) {
-        motionLayout.setTransition(motionLayout.getCurrentState(), anim);
-        motionLayout.transitionToEnd();
+        motionLayout.transitionToState(anim);
         navHostFragment.getNavController().navigate(fragment, null, navOptions);
         mTextSwitcher.setText(title);
     }
@@ -179,9 +174,14 @@ public class SearchActivity extends AppCompatActivity implements
 
     @Override
     public void onCorrectResult(PlaceResult result) {
+        if (result == null) return;
+
         mActionButton.setOnClickListener(v -> {
-            Intent mapIntent = new Intent(Intent.ACTION_VIEW, result.getMapUri());
-            startActivity(mapIntent);
+//            v.setTranslationZ(1000);
+            v.setVisibility(View.VISIBLE);
+//            motionLayout.setTransition(motionLayout.getCurrentState(), R.id.result);
+//            Intent mapIntent = new Intent(Intent.ACTION_VIEW, result.getMapUri());
+//            startActivity(mapIntent);
         });
     }
 }

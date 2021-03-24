@@ -2,6 +2,8 @@
 <MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <StateSet app:defaultState="@+id/result" />
+
     <ConstraintSet android:id="@+id/base">
         <Constraint
             android:id="@+id/type_icon"
@@ -15,9 +17,6 @@
             <CustomAttribute
                 app:attributeName="crossfade"
                 app:customFloatValue="0" />
-<!--            <CustomAttribute-->
-<!--                app:attributeName="padding"-->
-<!--                app:customDimension="8dp" />-->
         </Constraint>
         <Constraint
             android:id="@+id/party_icon"
@@ -31,9 +30,6 @@
             <CustomAttribute
                 app:attributeName="crossfade"
                 app:customFloatValue="0" />
-<!--            <CustomAttribute-->
-<!--                app:attributeName="padding"-->
-<!--                app:customDimension="8dp" />-->
         </Constraint>
         <Constraint
             android:id="@+id/money_icon"
@@ -47,9 +43,6 @@
             <CustomAttribute
                 app:attributeName="crossfade"
                 app:customFloatValue="0" />
-<!--            <CustomAttribute-->
-<!--                app:attributeName="padding"-->
-<!--                app:customDimension="8dp" />-->
         </Constraint>
         <Constraint
             android:id="@+id/place_icon"
@@ -63,9 +56,6 @@
             <CustomAttribute
                 app:attributeName="crossfade"
                 app:customFloatValue="0" />
-<!--            <CustomAttribute-->
-<!--                app:attributeName="padding"-->
-<!--                app:customDimension="8dp" />-->
         </Constraint>
         <Constraint
             android:id="@+id/action_button"
@@ -101,9 +91,6 @@
             <CustomAttribute
                 app:attributeName="crossfade"
                 app:customFloatValue="1" />
-<!--            <CustomAttribute-->
-<!--                app:attributeName="padding"-->
-<!--                app:customDimension="20dp" />-->
         </Constraint>
         <Constraint
             android:id="@+id/type_bg"
@@ -132,9 +119,6 @@
             <CustomAttribute
                 app:attributeName="crossfade"
                 app:customFloatValue="1" />
-<!--            <CustomAttribute-->
-<!--                app:attributeName="padding"-->
-<!--                app:customDimension="20dp" />-->
         </Constraint>
         <Constraint
             android:id="@+id/party_bg"
@@ -163,9 +147,6 @@
             <CustomAttribute
                 app:attributeName="crossfade"
                 app:customFloatValue="1" />
-<!--            <CustomAttribute-->
-<!--                app:attributeName="padding"-->
-<!--                app:customDimension="20dp" />-->
         </Constraint>
         <Constraint
             android:id="@+id/money_bg"
@@ -194,9 +175,6 @@
             <CustomAttribute
                 app:attributeName="crossfade"
                 app:customFloatValue="1" />
-<!--            <CustomAttribute-->
-<!--                app:attributeName="padding"-->
-<!--                app:customDimension="0dp" />-->
         </Constraint>
         <Constraint
             android:id="@+id/place_bg"
@@ -255,13 +233,11 @@
         app:constraintSetStart="@id/base"
         app:duration="150" />
 
-
     <Transition
         android:id="@+id/money_transition"
         app:constraintSetEnd="@id/money_expanded"
         app:constraintSetStart="@id/base"
         app:duration="150" />
-
 
     <Transition
         android:id="@+id/place_transition"
