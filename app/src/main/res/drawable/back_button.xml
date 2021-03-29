@@ -5,6 +5,6 @@
         android:color="@color/selected" />
     <solid android:color="@color/black" />
     <corners
-        android:bottomLeftRadius="24dp"
-        android:topLeftRadius="24dp" />
+        android:bottomLeftRadius="@dimen/MenuItemRadius"
+        android:topLeftRadius="@dimen/MenuItemRadius" />
 </shape>

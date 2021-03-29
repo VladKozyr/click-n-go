@@ -7,8 +7,8 @@
     <ConstraintSet android:id="@+id/base">
         <Constraint
             android:id="@+id/type_icon"
-            android:layout_width="42dp"
-            android:layout_height="42dp"
+            android:layout_width="@dimen/MenuItemIconSize"
+            android:layout_height="@dimen/MenuItemIconSize"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/type_bg"
             app:layout_constraintHorizontal_chainStyle="spread"
@@ -20,8 +20,8 @@
         </Constraint>
         <Constraint
             android:id="@+id/party_icon"
-            android:layout_width="42dp"
-            android:layout_height="42dp"
+            android:layout_width="@dimen/MenuItemIconSize"
+            android:layout_height="@dimen/MenuItemIconSize"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/party_bg"
             app:layout_constraintHorizontal_chainStyle="spread"
@@ -33,8 +33,8 @@
         </Constraint>
         <Constraint
             android:id="@+id/money_icon"
-            android:layout_width="42dp"
-            android:layout_height="42dp"
+            android:layout_width="@dimen/MenuItemIconSize"
+            android:layout_height="@dimen/MenuItemIconSize"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/money_bg"
             app:layout_constraintHorizontal_chainStyle="spread"
@@ -46,8 +46,8 @@
         </Constraint>
         <Constraint
             android:id="@+id/place_icon"
-            android:layout_width="42dp"
-            android:layout_height="42dp"
+            android:layout_width="@dimen/MenuItemIconSize"
+            android:layout_height="@dimen/MenuItemIconSize"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/place_bg"
             app:layout_constraintHorizontal_chainStyle="spread"
@@ -60,7 +60,7 @@
         <Constraint
             android:id="@+id/action_button"
             android:layout_width="0dp"
-            android:layout_height="75dp"
+            android:layout_height="@dimen/MenuItemHeight"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_chainStyle="spread"
@@ -69,7 +69,7 @@
         <Constraint
             android:id="@+id/back_button"
             android:layout_width="0dp"
-            android:layout_height="75dp"
+            android:layout_height="@dimen/MenuItemHeight"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="parent"
@@ -94,8 +94,8 @@
         </Constraint>
         <Constraint
             android:id="@+id/type_bg"
-            android:layout_width="150dp"
-            android:layout_height="75dp"
+            android:layout_width="@dimen/MenuItemWidth"
+            android:layout_height="@dimen/MenuItemHeight"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/party_bg"
@@ -122,8 +122,8 @@
         </Constraint>
         <Constraint
             android:id="@+id/party_bg"
-            android:layout_width="150dp"
-            android:layout_height="75dp"
+            android:layout_width="@dimen/MenuItemWidth"
+            android:layout_height="@dimen/MenuItemHeight"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/money_bg"
@@ -150,8 +150,8 @@
         </Constraint>
         <Constraint
             android:id="@+id/money_bg"
-            android:layout_width="150dp"
-            android:layout_height="75dp"
+            android:layout_width="@dimen/MenuItemWidth"
+            android:layout_height="@dimen/MenuItemHeight"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/place_bg"
@@ -178,8 +178,8 @@
         </Constraint>
         <Constraint
             android:id="@+id/place_bg"
-            android:layout_width="150dp"
-            android:layout_height="75dp"
+            android:layout_width="@dimen/MenuItemWidth"
+            android:layout_height="@dimen/MenuItemHeight"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -189,7 +189,7 @@
         <Constraint
             android:id="@id/action_button"
             android:layout_width="wrap_content"
-            android:layout_height="75dp"
+            android:layout_height="@dimen/MenuItemHeight"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -202,7 +202,7 @@
         <Constraint
             android:id="@+id/action_button"
             android:layout_width="fill_parent"
-            android:layout_height="75dp"
+            android:layout_height="@dimen/MenuItemHeight"
             android:layout_marginStart="140dp"
             android:translationZ="150dp"
             android:visibility="visible"
@@ -212,7 +212,7 @@
         <Constraint
             android:id="@+id/back_button"
             android:layout_width="fill_parent"
-            android:layout_height="75dp"
+            android:layout_height="@dimen/MenuItemHeight"
             android:layout_marginStart="25dp"
             android:translationZ="100dp"
             android:visibility="visible"

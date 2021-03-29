@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="InputEditTopMargin">46dp</dimen><!-- 46sp -->
+    <dimen name="LogoSize">100dp</dimen><!--160dp -->
+
+    <dimen name="MenuItemWidth">120dp</dimen><!--150dp -->
+    <dimen name="MenuItemHeight">60dp</dimen><!--75dp -->
+    <dimen name="MenuItemRadius">20dp</dimen> <!--28dp -->
+    <dimen name="MenuItemIconSize">38dp</dimen><!--42dp -->
+    <dimen name="MenuItemStartPadding">8dp</dimen><!--8dp -->
+
+    <dimen name="BottomNavBarHeight">60dp</dimen><!--120dp -->
+
+    <dimen name="QuestionBarHeight">60dp</dimen><!--100dp -->
+    <dimen name="QuestionTextSize">32sp</dimen><!--36sp -->
+
+    <dimen name="OptionTextSize">16sp</dimen><!--18sp -->
+    <dimen name="OptionMarginVertical">6dp</dimen><!--8dp -->
+
+    <dimen name="ProfileIconSize">36dp</dimen><!--40dp -->
+    <dimen name="ProfileTabHeight">50dp</dimen><!--60dp -->
+    <dimen name="ProfileListPadding">12dp</dimen><!--20dp -->
+
+    <dimen name="ActionButtonTextSize">28sp</dimen><!--32sp -->
+</resources>

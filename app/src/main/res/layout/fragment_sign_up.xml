@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
@@ -12,9 +11,11 @@
         style="@style/TextInputLayoutClickNGo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="46dp"
-        android:layout_marginBottom="18dp"
-        android:hint="@string/name">
+        android:layout_marginTop="@dimen/InputEditTopMargin"
+        android:hint="@string/name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/sign_up_name_edit_text"
@@ -28,8 +29,11 @@
         style="@style/TextInputLayoutClickNGo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="18dp"
-        android:hint="@string/email">
+        android:layout_marginTop="18dp"
+        android:hint="@string/email"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_name_text_input">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/sign_up_email_edit_text"
@@ -43,11 +47,14 @@
         style="@style/TextInputLayoutClickNGo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
         android:hint="@string/password"
         app:endIconDrawable="@drawable/show_password_selector"
         app:endIconMode="password_toggle"
         app:endIconTintMode="screen"
-        >
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_email_text_input">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/sign_up_password_edit_text"
@@ -61,8 +68,10 @@
         style="@style/ButtonClickNGoStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="81dp"
-        android:text="@string/sign_up" />
+        android:layout_gravity="bottom"
+        android:text="@string/sign_up"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

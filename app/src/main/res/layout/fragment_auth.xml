@@ -14,8 +14,8 @@
         android:background="@color/black">
 
         <ImageView
-            android:layout_width="159dp"
-            android:layout_height="159dp"
+            android:layout_width="@dimen/LogoSize"
+            android:layout_height="@dimen/LogoSize"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/white_logo" />
 

@@ -100,7 +100,7 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/profileTabLayout"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="@dimen/ProfileTabHeight"
         android:layout_gravity="bottom"
         app:tabRippleColor="#50595151"
         android:background="@color/colorProfileBackground"
